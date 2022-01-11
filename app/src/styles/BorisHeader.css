@@ -1,0 +1,43 @@
+.headerboris {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+
+  background-color: transparent;
+
+  box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30%;
+
+  background-color: rgba(52, 52, 53, 0.534);
+}
+
+.essai {
+  color: #2cc3c9 !important;
+}
+.essai:hover {
+  border-radius: 10%;
+  color: #78f3da !important;
+}
+.name {
+  color: #78f3da !important;
+}
+.name :hover {
+  color: #2cc3c9 !important;
+  border-radius: 10% !important;
+  background-color: red !important;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 5px;
+}
+
+.pictures {
+  width: 60px;
+  height: auto;
+}

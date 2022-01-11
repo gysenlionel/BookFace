@@ -9,7 +9,7 @@ import db from '../Firebase/firebase'
 import { doc, setDoc, Timestamp } from 'firebase/firestore'
 
 const MessageSender = () => {
-  const [{ user }, dispatch] = useStateValue()
+  // const [{ user }, dispatch] = useStateValue()
   const [input, setInput] = useState('')
   const [imageUrl, setImageUrl] = useState('')
 
@@ -30,13 +30,13 @@ const MessageSender = () => {
   return (
     <div className="messageSender">
       <div className="messageSender__top">
-        <Avatar src={user.photoURL} />
+        <Avatar src="" />
         <form>
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="messageSender__input"
-            placeholder={`What's up, ${user.displayName}`}
+            placeholder={`What's up, nameuser`}
           />
           <input
             value={imageUrl}
