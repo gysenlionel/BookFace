@@ -11,11 +11,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { useStateValue } from '../StateProvider/StateProvider'
 
 const Sidebar = () => {
-  const [{ user }, dispatch] = useStateValue()
+  // const [{ user }, dispatch] = useStateValue()
 
   return (
     <div className="sidebar">
-      <SidebarRow src={user.photoURL} title={user.displayName} />
+      <SidebarRow src="" title="" />
       <SidebarRow Icon={LocalHospitalIcon} title="COVID-19 Info Center" />
       <SidebarRow Icon={EmojiFlagsIcon} title="Pages" />
       <SidebarRow Icon={PeopleIcon} title="Friends" />
