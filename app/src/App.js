@@ -4,12 +4,14 @@ import Login from './pages/Login/Login'
 import { useStateValue } from './components/StateProvider/StateProvider'
 import Widgets from './components/Widget/Widgets'
 import Home from './pages/Home/Home'
+import Formulaire from './pages/Form/Formulaire'
 function App() {
   const [{ user }, dispatch] = useStateValue()
   return (
     <div className="app">
       {!user ? (
-        <Login />
+        // <Login />
+        <Formulaire />
       ) : (
         <>
           <Header />

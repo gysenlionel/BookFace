@@ -8,7 +8,7 @@ const firebaseConfig = {
     authDomain: process.env.REACT_APP_AUTHDOMAIN,
     projectId: process.env.REACT_APP_PROJID,
     storageBucket: process.env.REACT_APP_STORBUCKET,
-    messagingSenderId: process.env.REACT_APP_STORBUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING,
     appId: process.env.REACT_APP_ID,
     measurementId: process.env.REACT_APP_MEASURE,
 }
