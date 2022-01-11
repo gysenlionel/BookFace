@@ -1,65 +1,32 @@
 // adding Express Framework
 const express = require('express')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const userRoutes = require('./routes/user.routes')
+const postRoutes = require('./routes/post.routes')
+
+//connection to DB
+require('./config/ConnectionDB')
+
+const {checkUser, requireAuth} = require('./middleware/auth.middleware')
+
 const app = express()
 
-//adding Models
-const User = require('./models/user')
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
-//access to .env
-require('dotenv').config()
+//allow to read the cookie
+app.use(cookieParser())
 
-//adding mongoose
-const mongoose = require('mongoose')
-
-//adding express EJS Layout
-const expressEjsLayout = require('express-ejs-layouts')
-
-const session = require('express-session');
-const flash = require('connect-flash');
-
-// authentication 
-const passport = require('passport');
-require("./config/passport")(passport)
-
-// connect to react - front-end
-const cors = require('cors')
-app.use(cors())
-
-// Connection to the DB
-mongoose.connect(
-  process.env.DB_CONNECTION
-)
-.then ((result) => console.log('CONNECTED TO THE DB'))
-.catch ((err) => console.log(err))
-
-//EJS
-app.set('view engine','ejs');
-app.use(expressEjsLayout);
-
-//BodyParser
-app.use(express.urlencoded({extended : false}));
-
-//express session
-app.use(session({
-  secret : 'secret',
-  resave : true,
-  saveUninitialized : true
- }));
-app.use(passport.initialize());
-app.use(passport.session());
-
- //use flash - flash message
- app.use(flash());
- app.use((req,res,next)=> {
-   res.locals.success_msg = req.flash('success_msg');
-   res.locals.error_msg = req.flash('error_msg');
-   res.locals.error  = req.flash('error');
- next();
- })
+// jwt Middelware - Eachtime there's a request ('*') there will be a check if the user possess the right token
+app.get('*', checkUser)
+app.get('/jwtid', requireAuth, (req, res) => {
+  res.status(200).send(res.locals.user._id)
+})
 
 //Routes
-app.use('/',require('./routes/indexRoute'));
-app.use('/users',require('./routes/userRoute'));
+app.use('/api/user', userRoutes)
+app.use('/api/post', postRoutes)
 
 
 //connection to the server
