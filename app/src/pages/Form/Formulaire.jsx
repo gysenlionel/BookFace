@@ -71,7 +71,11 @@ const Formulaire = () => {
                     <TextfieldWrapper name="firstName" label="First Name" />
                   </Grid>
                   <Grid item xs={6}>
-                    <TextfieldWrapper name="lastName" label="Last Name" />
+                    <TextfieldWrapper
+                      name="lastName"
+                      label="Last Name"
+                      variant="outlined"
+                    />
                   </Grid>
                   <Grid item xs={12}>
                     <TextfieldWrapper name="email" label="Email" />
@@ -89,6 +93,7 @@ const Formulaire = () => {
                       name="password"
                       label="Password"
                       type="password"
+                      variant="outlined"
                     />
                   </Grid>
                   <Grid item xs={6}>
@@ -96,6 +101,7 @@ const Formulaire = () => {
                       name="confirmPassword"
                       label="Confirm Password"
                       type="password"
+                      variant="outlined"
                     />
                   </Grid>
                   <Grid item xs={12}>
