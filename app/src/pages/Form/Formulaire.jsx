@@ -4,23 +4,22 @@ import * as Yup from 'yup'
 import { Grid, Container, Typography } from '@mui/material'
 import TextfieldWrapper from '../../components/FormUI/textfield/Textfields'
 import Box from '@mui/material/Box'
-
 // bouton select
 import SelectWrapper from '../../components/FormUI/SelectWrapper/SelectWrapper'
 import countries from '../../data/countries.json'
 // bouton date
 import DataTime from '../../components/FormUI/dateTimePicker/DataTime'
 import Submit from '../../components/FormUI/Submit/Submit'
-
 import Radios from '../../components/FormUI/Radio/Radio'
 import Banner from '../../components/Banner/Banner'
-
+import axios from 'axios'
 const Formulaire = () => {
+  // creation state formik pour inputs
   const INITIAL_FORM_STATE = {
     firstName: '',
     lastName: '',
     email: '',
-    userName: '',
+    pseudo: '',
     password: '',
     confirmPassword: '',
     birthday: '',
@@ -28,12 +27,12 @@ const Formulaire = () => {
     city: '',
     country: '',
   }
-
+  // verification input avec Yup
   const FORM_VALIDATION = Yup.object().shape({
     firstName: Yup.string().required('Required'),
     lastName: Yup.string().required('Required'),
     email: Yup.string().email('invalid email.').required('Required'),
-    userName: Yup.string().required('Required'),
+    pseudo: Yup.string().required('Required'),
     password: Yup.string()
       .required('Password is required')
       .min(6, 'Password must be at least 6 characters'),
@@ -56,8 +55,30 @@ const Formulaire = () => {
               initialValues={{ ...INITIAL_FORM_STATE }}
               validationSchema={FORM_VALIDATION}
               // direction pour submit le form!
-              onSubmit={(values) => {
-                console.log(values)
+              onSubmit={async (values) => {
+                // creation Obj pour la data
+                const data = {
+                  fistname: values.firstName,
+                  name: values.lastName,
+                  pseudo: values.pseudo,
+                  email: values.email,
+                  password: values.password,
+                }
+                // fetch via axios
+                await axios({
+                  method: 'post',
+                  url: `${process.env.REACT_APP_API_URL}api/user/register`,
+                  data,
+                })
+                  .then((res) => {
+                    if (res.data.errors) {
+                      console.log(res.data.errors.pseudo)
+                    } else {
+                      // rediriger si submit
+                      console.log('submit')
+                    }
+                  })
+                  .catch((err) => console.log(err))
               }}
             >
               <Form>
@@ -77,7 +98,7 @@ const Formulaire = () => {
                     <TextfieldWrapper name="email" label="Email" />
                   </Grid>
                   <Grid item xs={6}>
-                    <TextfieldWrapper name="userName" label="User Name" />
+                    <TextfieldWrapper name="pseudo" label="User Name" />
                   </Grid>
 
                   <Grid item xs={6}>

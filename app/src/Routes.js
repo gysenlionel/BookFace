@@ -5,6 +5,7 @@ import { Routes } from 'react-router-dom'
 import Profile from './pages/Profile/profile'
 import Login from './pages/Login/Login'
 import Formulaire from './pages/Form/Formulaire'
+import Testform from './pages/Test/Testform'
 
 const Chemin = () => {
   return (
@@ -13,6 +14,7 @@ const Chemin = () => {
       <Route path="/profil" element={<Profile />} />
       <Route path="/login" element={<Login />} />
       <Route path="/form" element={<Formulaire />} />
+      <Route path="/test" element={<Testform />} />
     </Routes>
   )
 }

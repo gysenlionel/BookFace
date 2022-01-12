@@ -3,17 +3,17 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const userRoutes = require('./routes/user.routes')
-const postRoutes = require('./routes/post.routes')
+// const postRoutes = require('./routes/post.routes')
 
 //connection to DB
 require('./config/ConnectionDB')
 
-const {checkUser, requireAuth} = require('./middleware/auth.middleware')
+const { checkUser, requireAuth } = require('./middleware/auth.middleware')
 
 const app = express()
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 //allow to read the cookie
 app.use(cookieParser())
@@ -26,7 +26,7 @@ app.get('/jwtid', requireAuth, (req, res) => {
 
 //Routes
 app.use('/api/user', userRoutes)
-app.use('/api/post', postRoutes)
+// app.use('/api/post', postRoutes)
 
 
 //connection to the server

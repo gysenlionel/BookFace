@@ -64,7 +64,7 @@ export default function MenuAppBar() {
               }
             >
               <IconButton
-                size="large"
+                size="medium"
                 edge="start"
                 className="essai"
                 aria-label="menu"
@@ -74,7 +74,7 @@ export default function MenuAppBar() {
                 <p sx={{ pl: 2 }}> Home </p>
               </IconButton>
               <IconButton
-                size="large"
+                size="medium"
                 edge="start"
                 aria-label="menu"
                 className="essai"
@@ -88,7 +88,7 @@ export default function MenuAppBar() {
             {/*  EN Mobile */}
             <Box sx={{ display: { xs: 'initial', md: 'initial', lg: 'none' } }}>
               <IconButton
-                size="large"
+                size="medium"
                 edge="start"
                 className="essai"
                 aria-label="menu"
@@ -98,7 +98,7 @@ export default function MenuAppBar() {
                 <HomeIcon />
               </IconButton>
               <IconButton
-                size="large"
+                size="medium"
                 edge="start"
                 className="essai"
                 aria-label="menu"
