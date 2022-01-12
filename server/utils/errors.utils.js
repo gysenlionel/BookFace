@@ -30,3 +30,15 @@ module.exports.signInErrors = (err) => {
   
     return errors;
   }
+
+module.exports.uploadErrors = (err) => {
+    let errors = { format: '', maxSize: ''}
+    
+    if(err.message.include('invalid file'))
+        errors.format = 'The format of the picture is not valid'
+
+    if(err.message.include('max size'))
+        errors.maxSize = 'The size of the picture is over 500ko'
+    
+    return errors
+}
