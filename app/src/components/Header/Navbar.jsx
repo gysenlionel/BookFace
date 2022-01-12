@@ -11,8 +11,6 @@ import '../../styles/BorisHeader.css'
 import { useStateValue } from '../StateProvider/StateProvider.jsx'
 import Image from './Untitleddesign-removebg.png' // Import using relative path
 import { useNavigate } from 'react-router-dom'
-import Modal from '../../pages/Profile/modal'
-import Component from 'react'
 
 function refreshPage() {
   window.location.reload(false)
@@ -64,7 +62,6 @@ export default function MenuAppBar() {
               }
             >
               <IconButton
-                size="large"
                 edge="start"
                 className="essai"
                 aria-label="menu"
@@ -74,7 +71,6 @@ export default function MenuAppBar() {
                 <p sx={{ pl: 2 }}> Home </p>
               </IconButton>
               <IconButton
-                size="large"
                 edge="start"
                 aria-label="menu"
                 className="essai"
@@ -88,7 +84,6 @@ export default function MenuAppBar() {
             {/*  EN Mobile */}
             <Box sx={{ display: { xs: 'initial', md: 'initial', lg: 'none' } }}>
               <IconButton
-                size="large"
                 edge="start"
                 className="essai"
                 aria-label="menu"
@@ -98,7 +93,6 @@ export default function MenuAppBar() {
                 <HomeIcon />
               </IconButton>
               <IconButton
-                size="large"
                 edge="start"
                 className="essai"
                 aria-label="menu"
@@ -145,11 +139,11 @@ export default function MenuAppBar() {
               onClose={handleClose}
             >
               <div className="menu">
-                {/* <MenuItem onClick={handleDown}>Profil</MenuItem> */}
-                <MenuItem>
+                <MenuItem onClick={handleDown}>Profil</MenuItem>
+                {/*   <MenuItem>
                   <button onClick={() => setIsOpen(true)}>Edit Profile</button>
                   {isOpen && <Modal setIsOpen={setIsOpen} />}
-                </MenuItem>
+                </MenuItem> */}
 
                 <MenuItem onClick={(refreshPage, handleClose)}>Logout</MenuItem>
               </div>

@@ -1,149 +1,97 @@
 import * as React from 'react'
-import './../../styles/profilcss.css'
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import { useStateValue } from './../../components/StateProvider/StateProvider'
 import { Avatar, IconButton } from '@material-ui/core'
+/* import './../../styles/profilcss.css' */
+import TextField from '@mui/material/TextField'
 
-const ImgUpload = ({ onChange, src }) => (
-  <label htmlFor="photo-upload" className="custom-file-upload fas">
-    <div className="img-wrap img-upload">
-      <img for="photo-upload" src={src} />
-    </div>
-    <input id="photo-upload" type="file" onChange={onChange} />
-  </label>
-)
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}))
 
-const Name = ({ onChange, value }) => (
-  <div className="field">
-    <label htmlFor="name">name:</label>
-    <input
-      id="name"
-      type="text"
-      onChange={onChange}
-      maxlength="25"
-      value={value}
-      placeholder="Alexa"
-      required
-    />
-  </div>
-)
-
-const Status = ({ onChange, value }) => (
-  <div className="field">
-    <label htmlFor="status">status:</label>
-    <input
-      id="status"
-      type="text"
-      onChange={onChange}
-      maxLength="35"
-      value={value}
-      placeholder="It's a nice day!"
-      required
-    />
-  </div>
-)
-
-function Profile({ onSubmit, src, name, status }) {
+export default function Profile() {
   const [{ user }, dispatch] = useStateValue()
   return (
-    <div className="card">
-      <form onSubmit={onSubmit}>
-        <h1> {user.displayName}</h1>
-        <label className="custom-file-upload fas">
-          <div className="img-wrap">
-            <img for="photo-upload" src={src} />
-          </div>
-        </label>
-        <div className="name">{name}</div>
-        <div className="status">{status}</div>
-        <button type="submit" className="edit">
-          Edit Profile{' '}
-        </button>
-      </form>
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={3}>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          item
+          xs={12}
+          sx={{ margin: 2 }}
+        >
+          <Avatar
+            src=""
+            style={{
+              margin: '10px',
+              width: '150px',
+              height: '150px',
+            }}
+          />
+          <h1> Welcome: name</h1>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          item
+          xs={12}
+          sx={{ margin: 2 }}
+        >
+          <Box>
+            <h2>Edit Name : </h2>
+          </Box>
+          <Box
+            sx={{ justifyContent: 'space-between' }}
+            display="flex"
+            sx={{ mx: 1, mt: 4 }}
+          >
+            <Grid sx={{ ml: 4, mr: 4 }} item xs={6}>
+              <TextField name="firstName" label="First Name" id="Firstname" />
+            </Grid>
+            <Grid sx={{ ml: 4, mr: 4 }} item xs={6}>
+              <TextField name="LastName" label="Last Name" id="Last Name" />
+            </Grid>
+            <Grid sx={{ ml: 4, mr: 4 }} item xs={2}>
+              <button className="saveBtn">save</button>
+            </Grid>
+          </Box>
+          <Box sx={{ mx: 1, mt: 4 }}>
+            <h2>Edit Email : </h2>
+          </Box>
+          <Box
+            sx={{ justifyContent: 'space-between' }}
+            display="flex"
+            sx={{ mx: 1, mt: 2 }}
+          >
+            <Grid sx={{ ml: 4, mr: 4 }} item xs={12}>
+              <TextField name="Email" label="Email" id="Email" />
+            </Grid>
+
+            <Grid sx={{ ml: 4, mr: 4 }} item xs={2}>
+              <button className="saveBtn">save</button>
+            </Grid>
+          </Box>
+        </Grid>
+        <Grid item xs={6}>
+          <Item>xs=6</Item>
+        </Grid>
+        <Grid item xs>
+          <Item>xs</Item>
+        </Grid>
+      </Grid>
+    </Box>
   )
 }
-
-const Edit = ({ onSubmit, children, user }) => (
-  <div className="card">
-    <form onSubmit={onSubmit}>
-      <h1>{user.displayName}</h1>
-      {children}
-      <button type="submit" className="save">
-        Save{' '}
-      </button>
-    </form>
-  </div>
-)
-
-class CardProfile extends React.Component {
-  state = {
-    file: '',
-    imagePreviewUrl:
-      'https://github.com/OlgaKoplik/CodePen/blob/master/profile.jpg?raw=true',
-    name: '',
-    status: '',
-    active: 'edit',
-  }
-
-  photoUpload = (e) => {
-    e.preventDefault()
-    const reader = new FileReader()
-    const file = e.target.files[0]
-    reader.onloadend = () => {
-      this.setState({
-        file: file,
-        imagePreviewUrl: reader.result,
-      })
-    }
-    reader.readAsDataURL(file)
-  }
-  editName = (e) => {
-    const name = e.target.value
-    this.setState({
-      name,
-    })
-  }
-
-  editStatus = (e) => {
-    const status = e.target.value
-    this.setState({
-      status,
-    })
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-    let activeP = this.state.active === 'edit' ? 'profile' : 'edit'
-    this.setState({
-      active: activeP,
-    })
-  }
-
-  render() {
-    const { imagePreviewUrl, name, status, active } = this.state
-    return (
-      <div>
-        {active === 'edit' ? (
-          <Edit onSubmit={this.handleSubmit}>
-            <ImgUpload onChange={this.photoUpload} src={imagePreviewUrl} />
-            <Name onChange={this.editName} value={name} />
-            <Status onChange={this.editStatus} value={status} />
-          </Edit>
-        ) : (
-          <Profile
-            onSubmit={this.handleSubmit}
-            src={imagePreviewUrl}
-            name={name}
-            status={status}
-          />
-        )}
-      </div>
-    )
-  }
-}
-
-export default CardProfile
