@@ -1,0 +1,94 @@
+.login {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.login > div > img {
+  object-fit: contain;
+  height: 150px;
+}
+
+.button {
+  width: 300px;
+  height: 50px;
+  text-align: center;
+  font-size: 1em;
+  border-radius: 33px;
+  background: -webkit-linear-gradient(
+    89deg,
+    rgb(41, 196, 201),
+    rgb(121, 244, 218)
+  );
+
+  color: #eff2f5;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+}
+
+.button:hover {
+  box-shadow: 0 10px 20px -10px rgb(255, 255, 255);
+  transform: translateY(-10px);
+  background: #86ffed;
+}
+
+.name-logo {
+  display: inline-block;
+}
+.react-logo {
+  display: inline-block;
+  border-radius: 50%;
+  border: 10px solid #00d8ff;
+
+  animation-name: rotate;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.react-logo,
+.react-logo:before,
+.react-logo:after {
+  width: 250px;
+  height: 250px;
+  border: double 4px transparent;
+  border-radius: 50%;
+  background-image: linear-gradient(white, white),
+    radial-gradient(circle at top left, rgb(41, 196, 201), rgb(121, 244, 218));
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  /* background: -webkit-linear-gradient(
+    89deg,
+    rgb(41, 196, 201),
+    rgb(121, 244, 218)
+  ); */
+}
+
+.nucleo,
+.react-logo,
+.react-logo:before,
+.react-logo:after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-logo:before,
+.react-logo:after {
+  content: '';
+}
+
+.react-logo:after {
+  transform: rotate(-57deg);
+}
+
+.react-logo:before {
+  transform: rotate(57deg);
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}

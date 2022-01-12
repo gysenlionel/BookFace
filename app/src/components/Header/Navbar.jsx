@@ -11,8 +11,6 @@ import '../../styles/BorisHeader.css'
 import { useStateValue } from '../StateProvider/StateProvider.jsx'
 import Image from './Untitleddesign-removebg.png' // Import using relative path
 import { useNavigate } from 'react-router-dom'
-import Modal from '../../pages/Profile/modal'
-import Component from 'react'
 
 function refreshPage() {
   window.location.reload(false)
@@ -145,11 +143,11 @@ export default function MenuAppBar() {
               onClose={handleClose}
             >
               <div className="menu">
-                {/* <MenuItem onClick={handleDown}>Profil</MenuItem> */}
-                <MenuItem>
+                <MenuItem onClick={handleDown}>Profil</MenuItem>
+                {/*   <MenuItem>
                   <button onClick={() => setIsOpen(true)}>Edit Profile</button>
                   {isOpen && <Modal setIsOpen={setIsOpen} />}
-                </MenuItem>
+                </MenuItem> */}
 
                 <MenuItem onClick={(refreshPage, handleClose)}>Logout</MenuItem>
               </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Profile/modal.css'
+/* import '../Profile/modal.css' */
 import { useStateValue } from './../../components/StateProvider/StateProvider'
 import { Avatar, IconButton } from '@material-ui/core'
 import Grid from '@mui/material/Grid'
