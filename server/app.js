@@ -3,8 +3,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const userRoutes = require('./routes/user.routes')
-// const postRoutes = require('./routes/post.routes')
-
+const postRoutes = require('./routes/post.routes')
+require('dotenv').config({ path: './.env' })
 //connection to DB
 require('./config/ConnectionDB')
 
@@ -16,9 +16,9 @@ const cors = require('cors')
 const app = express()
 
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: 'http://localhost:3000',
   credentials: true,
-  withCredentials: true,
+  // withCredentials: true,
   'allowedHeaders': ['sessionId', 'Content-Type'],
   'exposedHeaders': ['sessionId'],
   'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -41,7 +41,7 @@ app.get('/jwtid', requireAuth, (req, res) => {
 
 //Routes
 app.use('/api/user', userRoutes)
-// app.use('/api/post', postRoutes)
+app.use('/api/post', postRoutes)
 
 
 //connection to the server
