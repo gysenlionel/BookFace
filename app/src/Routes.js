@@ -7,16 +7,21 @@ import Login from './pages/Login/Login'
 import Formulaire from './pages/Form/Formulaire'
 import Testform from './pages/Test/Testform'
 import { Redirect } from 'react-router-dom'
+import Connexion from './components/Connexion/Connexion'
+
 
 const Chemin = () => {
   return (
-    <Routes>
-      <Route path="/" exact element={<Home />} />
-      <Route path="/profil" element={<Profile />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/form" element={<Formulaire />} />
-      <Route path="/test" element={<Testform />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="/profil" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/form" element={<Formulaire />} />
+        <Route path="/test" element={<Testform />} />
+        <Route path="/connexion" element={<Connexion />} />
+      </Routes>
+    </>
   )
 }
 

@@ -11,6 +11,8 @@ import '../../styles/BorisHeader.css'
 import { useStateValue } from '../StateProvider/StateProvider.jsx'
 import Image from './Untitleddesign-removebg.png' // Import using relative path
 import { useNavigate } from 'react-router-dom'
+import Logout from '../Logout/Logout'
+import { UidContext } from '../AppContext/AppContext'
 
 function refreshPage() {
   window.location.reload(false)
@@ -23,6 +25,9 @@ const styles = {
 }
 
 export default function MenuAppBar() {
+  // récupère l'id user
+  const uid = React.useContext(UidContext)
+
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = React.useState(false)
   const handleDown = () => {
@@ -30,6 +35,11 @@ export default function MenuAppBar() {
     setAnchorEl(null)
   }
   const handleClose = () => {
+    setAnchorEl(null)
+  }
+  // a changé redirigé vers login quand elle sera prête !
+  const handleConnect = () => {
+    navigate('/connexion')
     setAnchorEl(null)
   }
 
@@ -148,8 +158,13 @@ export default function MenuAppBar() {
                   <button onClick={() => setIsOpen(true)}>Edit Profile</button>
                   {isOpen && <Modal setIsOpen={setIsOpen} />}
                 </MenuItem> */}
-
-                <MenuItem onClick={(refreshPage, handleClose)}>Logout</MenuItem>
+                {uid ? (
+                  <MenuItem onClick={(refreshPage, handleClose)}>
+                    Logout
+                  </MenuItem>
+                ) : (
+                  <MenuItem onClick={handleConnect}>Connect</MenuItem>
+                )}
               </div>
             </Menu>
           </div>
