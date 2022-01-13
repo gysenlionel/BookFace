@@ -1,44 +1,43 @@
 module.exports.signUpErrors = (err) => {
-    let errors = {pseudo: '', firstname: '', name: '', email:'', password: ''}
+  let errors = { pseudo: "", email: "", password: "" };
 
+  if (err.message.includes("pseudo"))
+    errors.pseudo = "Pseudo incorrect ou déjà pris";
 
-    if (err.message.includes('pseudo'))
-        errors.pseudo = "The pseudo is incorrect"
-    
-    if (err.message.includes('email'))
-        errors.email = "The email is incorrect"
+  if (err.message.includes("email")) errors.email = "Email incorrect";
 
-    if (err.message.includes('password'))
-        errors.password = "The password must at least have 6 characters"
+  if (err.message.includes("password"))
+    errors.password = "Le mot de passe doit faire 6 caractères minimum";
 
-    if (err.code === 11000 && Object.keys(err.keyValue)[0].includes('email'))
-        errors.email = "This email is already registered"
-    if (err.code === 11000 && Object.keys(err.keyValue)[0].includes('pseudo'))
-        errors.pseudo = "This pseudo is already taken"
+  if (err.code === 11000 && Object.keys(err.keyValue)[0].includes("pseudo"))
+    errors.pseudo = "Ce pseudo est déjà pris";
 
-    return errors
-}
+  if (err.code === 11000 && Object.keys(err.keyValue)[0].includes("email"))
+    errors.email = "Cet email est déjà enregistré";
+
+  return errors;
+};
 
 module.exports.signInErrors = (err) => {
-    let errors = { email: '', password: ''}
+  let errors = { email: '', password: ''}
+
+  if (err.message.includes("email")) 
+    errors.email = "Email inconnu";
   
-    if (err.message.includes("email")) 
-      errors.email = "This email is unknown";
-    
-    if (err.message.includes('password'))
-      errors.password = "Wrong password"
-  
-    return errors;
-  }
+  if (err.message.includes('password'))
+    errors.password = "Le mot de passe ne correspond pas"
+
+  return errors;
+}
 
 module.exports.uploadErrors = (err) => {
-    let errors = { format: '', maxSize: ''}
-    
-    if(err.message.include('invalid file'))
-        errors.format = 'The format of the picture is not valid'
+  let errors = { format: '', maxSize: ""};
 
-    if(err.message.include('max size'))
-        errors.maxSize = 'The size of the picture is over 500ko'
-    
-    return errors
+  if (err.message.includes('invalid file'))
+    errors.format = "Format incompatabile";
+
+  if (err.message.includes('max size'))
+    errors.maxSize = "Le fichier dépasse 500ko";
+
+  return errors
 }
