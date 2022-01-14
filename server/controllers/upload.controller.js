@@ -27,7 +27,7 @@ module.exports.uploadProfil = async (req, res) => {
     )
   );
 
-  try {
+  /* try {
     await UserModel.findByIdAndUpdate(
       req.body.userId,
       { $set : {picture: "./uploads/profil/" + fileName}},
@@ -39,5 +39,5 @@ module.exports.uploadProfil = async (req, res) => {
     );
   } catch (err) {
     return res.status(500).send({ message: err });
-  }
+  } */
 };
