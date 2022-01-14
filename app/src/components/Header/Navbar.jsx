@@ -53,7 +53,7 @@ export default function MenuAppBar() {
   // const [{ user }, dispatch] = useStateValue()
 
   return (
-    <Box sx={{ flexGrow: 1 }} style={{ marginBottom: 60 }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="relative" color="transparent">
         <Toolbar style={styles.paperContainer} className="headerboris">
           <IconButton aria-label="menu" onClick={() => navigate('/')}>

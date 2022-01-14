@@ -41,3 +41,9 @@
   width: 60px;
   height: auto;
 }
+@media (max-width: 500px) {
+  .headerboris {
+    background: #3077fb60;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6aBcGIcwJ-KyCR0F6uWBpzYcHUQWK9k5rHA9anCb8svNnDaX50sBsgkUrt1Q-Z3qhULY&usqp=CAU);
+  }
+}

@@ -12,6 +12,7 @@ import countries from '../../data/countries.json'
 // bouton date
 import DataTime from '../../components/FormUI/dateTimePicker/DataTime'
 import { Formik, Form } from 'formik'
+import MenuAppBar from '../../components/Header/Navbar'
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -21,7 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }))
 
 export default function Profile() {
-  const [{ user }, dispatch] = useStateValue()
+  /*  const [{ user }, dispatch] = useStateValue() */
   const INITIAL_FORM_STATE = {
     firstName: '',
     lastName: '',
@@ -36,6 +37,7 @@ export default function Profile() {
   }
   return (
     <>
+      <MenuAppBar />
       <Formik
         initialValues={{ ...INITIAL_FORM_STATE }}
         // direction pour submit le form!
@@ -45,6 +47,7 @@ export default function Profile() {
       >
         <Form>
           <Grid
+            className="profil"
             container
             direction="column"
             justifyContent="center"
@@ -62,107 +65,142 @@ export default function Profile() {
             />
             <h1> Welcome: name</h1>
           </Grid>
-
-          <Grid container spacing={2}>
-            <Grid justifyContent="space-between" item xs={6}>
-              <Box sx={{ ml: 5 }}>
-                <h2>Edit Name : </h2>
-              </Box>
-              <Box
-                sx={{ justifyContent: 'space-between' }}
-                display="flex"
-                sx={{ mx: 1, mt: 4 }}
+          <div className="background">
+            <Grid alignItems="center" justifyContent="space-around" container>
+              <Grid
+                justifyContent="space-between"
+                alignItems="center"
+                direction="column"
+                sx={{ mt: 3, mb: 2 }}
+                item
+                xs={10}
               >
-                <Grid sx={{ ml: 4, mr: 4 }} item xs={5}>
-                  <TextField
-                    style={{ width: '100%' }}
-                    name="firstName"
-                    label="First Name"
-                    id="Firstname"
-                  />
+                <Box>
+                  <h2>Edit Name : </h2>
+                </Box>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  xs={12}
+                >
+                  <Grid item xs={5}>
+                    <TextField
+                      style={{ width: '100%' }}
+                      name="FirstName"
+                      label="FirstName"
+                      id="FirstName"
+                    />
+                  </Grid>
+                  <Grid item xs={5}>
+                    <TextField
+                      style={{ width: '100%' }}
+                      name="LastName"
+                      label="LastName"
+                      id="LastName"
+                    />
+                  </Grid>
                 </Grid>
-                <Grid sx={{ ml: 4, mr: 4 }} item xs={5}>
-                  <TextField
-                    style={{ width: '100%' }}
-                    name="LastName"
-                    label="Last Name"
-                    id="Last Name"
-                  />
-                </Grid>
-                <Grid sx={{ ml: 4, mr: 4 }} item xs={2}>
+                <Grid item xs={1}>
                   <button className="saveBtn">save</button>
                 </Grid>
-              </Box>
+              </Grid>
             </Grid>
-            <Grid item xs={6}>
-              <Box sx={{ ml: 5 }}>
-                <h2>Edit Email : </h2>
-              </Box>
-              <Box
-                sx={{ justifyContent: 'space-between' }}
-                display="flex"
-                sx={{ mx: 1, mt: 4 }}
-              >
-                <Grid sx={{ ml: 4, mr: 6 }} item xs={6}>
-                  <TextField
-                    style={{ width: '100%' }}
-                    name="Email"
-                    label="Email"
-                    id="Email"
-                  />
-                </Grid>
 
-                <Grid sx={{ ml: 4, mr: 4 }} item xs={2}>
+            <Grid alignItems="center" justifyContent="space-around" container>
+              <Grid
+                justifyContent="space-between"
+                alignItems="center"
+                direction="column"
+                sx={{ mt: 3, mb: 2 }}
+                item
+                xs={10}
+              >
+                <Box>
+                  <h2>Edit Mail: </h2>
+                </Box>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  xs={12}
+                >
+                  <Grid item xs={12}>
+                    <TextField
+                      style={{ width: '100%' }}
+                      name="Email"
+                      label="Email"
+                      id="Email"
+                    />
+                  </Grid>
+                </Grid>
+                <Grid item xs={1}>
                   <button className="saveBtn">save</button>
                 </Grid>
-              </Box>
-            </Grid>
-          </Grid>
-          <Grid container spacing={2}>
-            <Grid
-              sx={{ mt: 3, ml: 5 }}
-              justifyContent="space-between"
-              item
-              xs={10}
-            >
-              <Box>
-                <h2>Edit Address : </h2>
-              </Box>
-              <TextField
-                sx={{ mr: 5 }}
-                style={{ width: '90%' }}
-                name="addressLine1"
-                label="Address"
-              />
+              </Grid>
             </Grid>
 
-            <Grid
-              sx={{ mt: 1, ml: 5, mb: 4 }}
-              display="flex"
-              justifyContent="space-between"
-              xs={12}
-            >
-              <Grid sx={{ ml: 2, mr: 5 }} item xs={5}>
+            <Grid alignItems="center" justifyContent="space-around" container>
+              <Grid
+                justifyContent="space-between"
+                alignItems="center"
+                direction="column"
+                sx={{ mt: 3, mb: 2 }}
+                item
+                xs={10}
+              >
+                <Box>
+                  <h2>Edit Address : </h2>
+                </Box>
                 <TextField
                   style={{ width: '100%' }}
-                  name="city"
-                  label="City"
-                  id="City"
+                  name="addressLine1"
+                  label="Address"
                 />
               </Grid>
-              <Grid sx={{ ml: 4, mr: 6 }} item xs={5}>
-                <SelectWrapper
-                  fullWidth
-                  name="country"
-                  label="Country"
-                  options={countries}
-                />
-              </Grid>
-              <Grid sx={{ ml: 4, mr: 10 }} item xs={2}>
-                <button className="saveBtn">save</button>
+
+              <Grid alignItems="center" justifyContent="space-around" container>
+                <Grid
+                  justifyContent="space-between"
+                  alignItems="center"
+                  direction="column"
+                  sx={{ mb: 2 }}
+                  item
+                  xs={10}
+                >
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    xs={12}
+                  >
+                    <Grid item xs={5}>
+                      <TextField
+                        style={{ width: '100%' }}
+                        name="FirstName"
+                        label="FirstName"
+                        id="FirstName"
+                      />
+                    </Grid>
+                    <Grid item xs={5}>
+                      <TextField
+                        style={{ width: '100%' }}
+                        name="LastName"
+                        label="LastName"
+                        id="LastName"
+                      />
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={1}>
+                    <button className="saveBtn">save</button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
+          </div>
         </Form>
       </Formik>
     </>

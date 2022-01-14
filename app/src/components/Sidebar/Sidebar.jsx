@@ -16,13 +16,13 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <SidebarRow src="" title="" />
-      <SidebarRow Icon={LocalHospitalIcon} title="COVID-19 Info Center" />
-      <SidebarRow Icon={EmojiFlagsIcon} title="Pages" />
+      {/*  <SidebarRow Icon={LocalHospitalIcon} title="COVID-19 Info Center" />
+      <SidebarRow Icon={EmojiFlagsIcon} title="Pages" /> */}
       <SidebarRow Icon={PeopleIcon} title="Friends" />
       <SidebarRow Icon={ChatIcon} title="Messenger" />
-      <SidebarRow Icon={StorefrontIcon} title="Marketplace" />
+      {/*   <SidebarRow Icon={StorefrontIcon} title="Marketplace" />
       <SidebarRow Icon={VideoLibraryIcon} title="Videos" />
-      <SidebarRow Icon={ExpandMoreIcon} title="Marketplace" />
+      <SidebarRow Icon={ExpandMoreIcon} title="Marketplace" /> */}
     </div>
   )
 }

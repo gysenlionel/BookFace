@@ -5,8 +5,13 @@ import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import { useStateValue } from './../../components/StateProvider/StateProvider'
 import { Avatar, IconButton } from '@material-ui/core'
-/* import './../../styles/profilcss.css' */
+import './../../styles/profilcss.css'
 import TextField from '@mui/material/TextField'
+import SelectWrapper from '../../components/FormUI/SelectWrapper/SelectWrapper'
+import countries from '../../data/countries.json'
+// bouton date
+import DataTime from '../../components/FormUI/dateTimePicker/DataTime'
+import { Formik, Form } from 'formik'
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -17,81 +22,174 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Profile() {
   const [{ user }, dispatch] = useStateValue()
+  const INITIAL_FORM_STATE = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    userName: '',
+    password: '',
+    confirmPassword: '',
+    birthday: '',
+    addressLine1: '',
+    city: '',
+    country: '',
+  }
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={3}>
-        <Grid
-          container
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          item
-          xs={12}
-          sx={{ margin: 2 }}
-        >
-          <Avatar
-            src=""
-            style={{
-              margin: '10px',
-              width: '150px',
-              height: '150px',
-            }}
-          />
-          <h1> Welcome: name</h1>
-        </Grid>
-      </Grid>
-      <Grid container spacing={3}>
-        <Grid
-          container
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          item
-          xs={12}
-          sx={{ margin: 2 }}
-        >
-          <Box>
-            <h2>Edit Name : </h2>
-          </Box>
-          <Box
-            sx={{ justifyContent: 'space-between' }}
-            display="flex"
-            sx={{ mx: 1, mt: 4 }}
+    <>
+      <Formik
+        initialValues={{ ...INITIAL_FORM_STATE }}
+        // direction pour submit le form!
+        onSubmit={(values) => {
+          console.log(values)
+        }}
+      >
+        <Form>
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            item
+            xs={12}
+            sx={{ mb: 5 }}
           >
-            <Grid sx={{ ml: 4, mr: 4 }} item xs={6}>
-              <TextField name="firstName" label="First Name" id="Firstname" />
+            <Avatar
+              src=""
+              style={{
+                margin: '10px',
+                width: '150px',
+                height: '150px',
+              }}
+            />
+            <h1> Welcome: name</h1>
+          </Grid>
+          <Grid alignItems="center" justifyContent="space-around" container>
+            <Grid
+              justifyContent="space-between"
+              alignItems="center"
+              direction="column"
+              sx={{ mt: 3, mb: 2 }}
+              item
+              xs={10}
+            >
+              <Box>
+                <h2>Edit Name : </h2>
+              </Box>
+              <Grid
+                container
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                xs={12}
+              >
+                <Grid item xs={3}>
+                  <TextField
+                    style={{ width: '100%' }}
+                    name="FirstName"
+                    label="FirstName"
+                    id="FirstName"
+                  />
+                </Grid>
+                <Grid item xs={3}>
+                  <TextField
+                    style={{ width: '100%' }}
+                    name="LastName"
+                    label="LastName"
+                    id="LastName"
+                  />
+                </Grid>
+
+                <Grid item xs={1}>
+                  <button className="saveBtn">save</button>
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid sx={{ ml: 4, mr: 4 }} item xs={6}>
-              <TextField name="LastName" label="Last Name" id="Last Name" />
+          </Grid>
+
+          <Grid alignItems="center" justifyContent="space-around" container>
+            <Grid
+              justifyContent="space-between"
+              alignItems="center"
+              direction="column"
+              sx={{ mt: 3, mb: 2 }}
+              item
+              xs={10}
+            >
+              <Box>
+                <h2>Edit Mail: </h2>
+              </Box>
+              <Grid
+                container
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                xs={12}
+              >
+                <Grid item xs={6}>
+                  <TextField
+                    style={{ width: '100%' }}
+                    name="Email"
+                    label="Email"
+                    id="Email"
+                  />
+                </Grid>
+
+                <Grid item xs={1}>
+                  <button className="saveBtn">save</button>
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid sx={{ ml: 4, mr: 4 }} item xs={2}>
-              <button className="saveBtn">save</button>
-            </Grid>
-          </Box>
-          <Box sx={{ mx: 1, mt: 4 }}>
-            <h2>Edit Email : </h2>
-          </Box>
-          <Box
-            sx={{ justifyContent: 'space-between' }}
-            display="flex"
-            sx={{ mx: 1, mt: 2 }}
-          >
-            <Grid sx={{ ml: 4, mr: 4 }} item xs={12}>
-              <TextField name="Email" label="Email" id="Email" />
+          </Grid>
+
+          <Grid alignItems="center" justifyContent="space-around" container>
+            <Grid
+              justifyContent="space-between"
+              alignItems="center"
+              direction="column"
+              sx={{ mt: 3, mb: 2 }}
+              item
+              xs={10}
+            >
+              <Box>
+                <h2>Edit Address : </h2>
+              </Box>
+              <TextField
+                style={{ width: '100%' }}
+                name="addressLine1"
+                label="Address"
+              />
             </Grid>
 
-            <Grid sx={{ ml: 4, mr: 4 }} item xs={2}>
-              <button className="saveBtn">save</button>
+            <Grid
+              container
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              xs={10}
+            >
+              <Grid item xs={4}>
+                <TextField
+                  style={{ width: '100%' }}
+                  name="city"
+                  label="City"
+                  id="City"
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <SelectWrapper
+                  fullWidth
+                  name="country"
+                  label="Country"
+                  options={countries}
+                />
+              </Grid>
+              <Grid item xs={1}>
+                <button className="saveBtn">save</button>
+              </Grid>
             </Grid>
-          </Box>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>xs=6</Item>
-        </Grid>
-        <Grid item xs>
-          <Item>xs</Item>
-        </Grid>
-      </Grid>
-    </Box>
+          </Grid>
+        </Form>
+      </Formik>
+    </>
   )
 }
