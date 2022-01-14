@@ -97,11 +97,11 @@ export default function Profile() {
                       />
                     </Grid>
                     <Grid item xs={5}>
-                      <SelectWrapper
-                        fullWidth
-                        name="country"
-                        label="Country"
-                        options={countries}
+                      <TextField
+                        style={{ width: '100%' }}
+                        name="LastName"
+                        label="LastName"
+                        id="LastName"
                       />
                     </Grid>
                   </Grid>
@@ -193,11 +193,11 @@ export default function Profile() {
                         />
                       </Grid>
                       <Grid item xs={5}>
-                        <TextField
-                          style={{ width: '100%' }}
-                          name="LastName"
-                          label="LastName"
-                          id="LastName"
+                        <SelectWrapper
+                          fullWidth
+                          name="country"
+                          label="Country"
+                          options={countries}
                         />
                       </Grid>
                     </Grid>
