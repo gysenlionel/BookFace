@@ -1,4 +1,4 @@
-.home {
-  display: flex;
-  background-color: #fbfafa;
+* {
+  margin: 0;
+  padding: 0;
 }
