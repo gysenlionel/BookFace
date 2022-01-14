@@ -67,9 +67,7 @@ const Connexion = () => {
                 <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
                   <Grid item xs={8}>
                     <TextfieldWrapper name="email" label="Email" />
-                    <Box sx={{ color: 'error.main' }}>
-                      <div className="erroremail"></div>
-                    </Box>
+                    <div className="erroremail"></div>
                   </Grid>
                   <Grid item xs={8}>
                     <TextfieldWrapper
