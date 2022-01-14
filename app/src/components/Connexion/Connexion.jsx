@@ -7,8 +7,11 @@ import * as Yup from 'yup'
 import Submit from '../../components/FormUI/Submit/Submit'
 import Banner from '../../components/Banner/Banner'
 import axios from 'axios'
+import { palette } from '@mui/system'
 
 const Connexion = () => {
+  const errormail = document.querySelector('.erroremail')
+  const errorPassword = document.querySelector('.errorpassword')
   const INITIAL_FORM_STATE = {
     email: '',
     password: '',
@@ -46,7 +49,9 @@ const Connexion = () => {
                   .then((res) => {
                     if (res.data.errors) {
                       // renvoyé les erreurs du back (à afficher dans une div)
-                      console.log(res.data.errors.email)
+
+                      errormail.innerHTML = res.data.errors.email
+                      errorPassword.innerHTML = res.data.errors.password
                       console.log(res.data.errors.password)
                     } else {
                       console.log(res)
@@ -62,6 +67,9 @@ const Connexion = () => {
                 <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
                   <Grid item xs={8}>
                     <TextfieldWrapper name="email" label="Email" />
+                    <Box sx={{ color: 'error.main' }}>
+                      <div className="erroremail"></div>
+                    </Box>
                   </Grid>
                   <Grid item xs={8}>
                     <TextfieldWrapper
@@ -69,6 +77,7 @@ const Connexion = () => {
                       label="Password"
                       type="password"
                     />
+                    <div className="errorpassword"></div>
                   </Grid>
                   <Grid item xs={8} sx={{ mb: 4 }}>
                     <Submit>Submit</Submit>

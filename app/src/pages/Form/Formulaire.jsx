@@ -93,8 +93,9 @@ const Formulaire = () => {
                         } else {
                           // rediriger si submit
                           console.log('submit')
-                          setFormSubmit(true)
+
                           window.location = '/login'
+                          setFormSubmit(true)
                         }
                       })
                       .catch((err) => console.log(err))
