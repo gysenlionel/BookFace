@@ -28,22 +28,12 @@ const Post = ({ profilePic, image, username, timestamp, message }) => {
       <div className="post__options">
         <div className="post__option">
           <ThumbUpIcon />
-          <p>Like</p>
+          <p>Feel</p>
         </div>
 
         <div className="post__option">
           <ChatBubbleIcon />
           <p>Comment</p>
-        </div>
-
-        <div className="post__option">
-          <NearMeIcon />
-          <p>Share</p>
-        </div>
-
-        <div className="post__option">
-          <AccountCircleIcon />
-          <ExpandMoreIcon />
         </div>
       </div>
     </div>

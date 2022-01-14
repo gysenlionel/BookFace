@@ -1,4 +1,4 @@
-import { Avatar } from '@mui/material'
+import { Avatar, MenuItem } from '@mui/material'
 import React, { useState } from 'react'
 import '../../styles/MessageSender.css'
 import VideocamIcon from '@mui/icons-material/Videocam'
@@ -7,6 +7,8 @@ import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
 import { useStateValue } from '../StateProvider/StateProvider'
 import db from '../Firebase/firebase'
 import { doc, setDoc, Timestamp } from 'firebase/firestore'
+import Grid from '@mui/material/Grid'
+import TextField from '@mui/material/TextField'
 
 const MessageSender = () => {
   // const [{ user }, dispatch] = useStateValue()
@@ -29,39 +31,45 @@ const MessageSender = () => {
   }
   return (
     <div className="messageSender">
-      <div className="messageSender__top">
-        <Avatar src="" />
-        <form>
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="messageSender__input"
-            placeholder={`What's up, nameuser`}
-          />
-          <input
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            placeholder="image URL (optionnal)"
-          />
-          <button onClick={handleSubmit} type="submit">
+      <form>
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          className="top"
+          container
+          sx={{ mt: 5, mb: 2 }}
+        >
+          <Grid sx={{ ml: 5, mr: 1, mt: 1, mb: 2 }}>
+            <Avatar src="" />
+          </Grid>
+          <Grid xs={6} sx={{ ml: 5, mr: 5, mt: 1, mb: 2 }}>
+            <TextField
+              color="primary"
+              style={{ width: '100%' }}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="messageSender__input"
+              placeholder={`What's up, nameuser`}
+              variant="standard"
+            />
+          </Grid>
+          <Grid xs={2} sx={{ ml: 5, mr: 5, mt: 1, mb: 2 }}>
             {' '}
-            Hidden submit
-          </button>
-        </form>
-      </div>
+            <TextField
+              variant="filled"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+              placeholder="image URL (optionnal)"
+            />
+          </Grid>
+        </Grid>
+      </form>
       <div className="messageSender__bottom">
-        <div className="messageSender__option">
-          <VideocamIcon style={{ color: 'red' }} />
-          <h3>Live Video</h3>
-        </div>
-        <div className="messageSender__option">
-          <PhotoLibraryIcon style={{ color: 'green' }} />
-          <h3>Photo/Video</h3>
-        </div>
-        <div className="messageSender__option">
-          <InsertEmoticonIcon style={{ color: 'green' }} />
-          <h3>Freeling/Activity</h3>
-        </div>
+        <button type="submit" onClick={''} className="button">
+          Send Good Vibes !
+        </button>
       </div>
     </div>
   )

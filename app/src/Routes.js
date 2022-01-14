@@ -5,7 +5,6 @@ import { Routes } from 'react-router-dom'
 import Profile from './pages/Profile/profile'
 import Login from './pages/Login/Login'
 import Formulaire from './pages/Form/Formulaire'
-import { Redirect } from 'react-router-dom'
 
 const Chemin = () => {
   return (

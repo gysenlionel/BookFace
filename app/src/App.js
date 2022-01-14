@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="app">
       <>
-        {/*  <MenuAppBar /> */}
+        <MenuAppBar />
         <Chemin />
       </>
     </div>
