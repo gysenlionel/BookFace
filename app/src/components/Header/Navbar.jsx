@@ -15,6 +15,7 @@ import cookie from 'js-cookie'
 import axios from 'axios'
 import Logout from '../Logout/Logout'
 import LoginIcon from '@mui/icons-material/Login'
+import { useSelector } from 'react-redux'
 function refreshPage() {
   window.location.reload(false)
 }
@@ -28,6 +29,8 @@ const styles = {
 export default function MenuAppBar() {
   // récupère l'id user
   const uid = React.useContext(UidContext)
+  // récupère la data de l'user
+  const userData = useSelector((state) => state.userReducer)
 
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = React.useState(false)
@@ -129,7 +132,7 @@ export default function MenuAppBar() {
                 <Avatar src="" />
               </Box>
               <Box>
-                <p>name</p>
+                <p>{userData.pseudo}</p>
               </Box>
             </IconButton>
 
