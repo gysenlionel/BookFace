@@ -5,14 +5,24 @@ import VideocamIcon from '@mui/icons-material/Videocam'
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary'
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
 import { useStateValue } from '../StateProvider/StateProvider'
+import db from '../Firebase/firebase'
+import { doc, setDoc, Timestamp } from 'firebase/firestore'
 
 const MessageSender = () => {
-  const [{ user }, dispatch] = useStateValue()
+  // const [{ user }, dispatch] = useStateValue()
   const [input, setInput] = useState('')
   const [imageUrl, setImageUrl] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    // db.collection('posts').add({
+    //   message: input,
+    //   timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    //   profilePic: user.photoURL,
+    //   username: user.displayName,
+    //   image: imageUrl,
+    // })
 
     setInput('')
     setImageUrl('')
@@ -20,13 +30,13 @@ const MessageSender = () => {
   return (
     <div className="messageSender">
       <div className="messageSender__top">
-        <Avatar src={user.photoURL} />
+        <Avatar src="" />
         <form>
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="messageSender__input"
-            placeholder={`What's up, ${user.displayName}`}
+            placeholder={`What's up, nameuser`}
           />
           <input
             value={imageUrl}

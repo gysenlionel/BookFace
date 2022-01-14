@@ -1,0 +1,9 @@
+.carrousel {
+  width: 100%;
+  height: 500px;
+  background-color: black;
+}
+.carrouselInner {
+  height: 100%;
+  width: 100%;
+}
