@@ -180,17 +180,17 @@ export default function Profile() {
                     <Grid item xs={5}>
                       <TextField
                         style={{ width: '100%' }}
-                        name="FirstName"
-                        label="FirstName"
-                        id="FirstName"
+                        name="city"
+                        label="City"
+                        id="City"
                       />
                     </Grid>
                     <Grid item xs={5}>
-                      <TextField
-                        style={{ width: '100%' }}
-                        name="LastName"
-                        label="LastName"
-                        id="LastName"
+                      <SelectWrapper
+                        fullWidth
+                        name="country"
+                        label="Country"
+                        options={countries}
                       />
                     </Grid>
                   </Grid>
