@@ -14,13 +14,13 @@ function App() {
   // const [{ user }, dispatch] = useStateValue()
   const [uid, setUid] = useState(null)
   const dispatch = useDispatch()
-  // useEffect va controlé automatiquement le token de l'user 
+  // useEffect va controlé automatiquement le token de l'user
   useEffect(() => {
     const fetchToken = async () => {
       await axios({
         method: 'get',
         url: `${process.env.REACT_APP_API_URL}jwtid`,
-        withCredentials: true
+        withCredentials: true,
       })
         .then((res) => setUid(res.data))
         .catch((err) => console.log('No token'))
@@ -34,14 +34,10 @@ function App() {
     <div className="app">
       <>
         <UidContext.Provider value={uid}>
-
-      <Chemin />
-
-    </UidContext.Provider>
+          <Chemin />
+        </UidContext.Provider>
       </>
     </div>
- 
-   
   )
 }
 

@@ -12,6 +12,7 @@ import countries from '../../data/countries.json'
 // bouton date
 import DataTime from '../../components/FormUI/dateTimePicker/DataTime'
 import { Formik, Form } from 'formik'
+import MenuAppBar from '../../components/Header/Navbar'
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -21,7 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }))
 
 export default function Profile() {
-  const [{ user }, dispatch] = useStateValue()
+  /*  const [{ user }, dispatch] = useStateValue() */
   const INITIAL_FORM_STATE = {
     firstName: '',
     lastName: '',
@@ -36,6 +37,7 @@ export default function Profile() {
   }
   return (
     <>
+      <MenuAppBar />
       <Formik
         initialValues={{ ...INITIAL_FORM_STATE }}
         // direction pour submit le form!

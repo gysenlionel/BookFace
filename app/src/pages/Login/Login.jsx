@@ -24,21 +24,6 @@ const theme = createTheme({
 })
 
 const Login = () => {
-  const [sate, dispatch] = useStateValue()
-
-  const signIn = () => {
-    const provider = new GoogleAuthProvider()
-    signInWithPopup(authentification, provider)
-      .then((result) => {
-        dispatch({
-          type: actionTypes.SET_USER,
-          user: result.user,
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
   return (
     <Grid className="login" container spacing={2}>
       <Grid xs={12} container direction="column" alignItems="center">
@@ -72,11 +57,11 @@ const Login = () => {
         justifyContent="space-around"
         alignItems="center"
       >
-        <button type="submit" onClick={signIn} className="button">
+        <button type="submit" onClick={'signIn'} className="button">
           Sign Up
         </button>
 
-        <button type="submit" onClick={signIn} className="button">
+        <button type="submit" onClick={'signIn'} className="button">
           Sign In
         </button>
 
