@@ -14,6 +14,7 @@ import DataTime from '../../components/FormUI/dateTimePicker/DataTime'
 import { Formik, Form } from 'formik'
 import MenuAppBar from '../../components/Header/Navbar'
 import { UidContext } from '../../components/AppContext/AppContext'
+import { useSelector } from 'react-redux'
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -24,6 +25,9 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Profile() {
   // accès id user
   const uid = useContext(UidContext)
+  // accès aux data user
+  const userData = useSelector((state) => state.userReducer)
+
   /*  const [{ user }, dispatch] = useStateValue() */
   const INITIAL_FORM_STATE = {
     firstName: '',
@@ -59,14 +63,14 @@ export default function Profile() {
               xs={12}
             >
               <Avatar
-                src=""
+                src={userData.picture}
                 style={{
                   margin: '10px',
                   width: '150px',
                   height: '150px',
                 }}
               />
-              <h1> Welcome: name</h1>
+              <h1> Welcome: {userData.pseudo}</h1>
             </Grid>
             <div className="background">
               <Grid alignItems="center" justifyContent="space-around" container>
