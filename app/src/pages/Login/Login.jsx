@@ -14,7 +14,7 @@ import Carrousel from './../../components/caroussel/carrousel'
 import Connexion from '../../components/Connexion/Connexion'
 import Formulaire from '../Form/Formulaire'
 import { useState } from 'react'
-import BasicModal from '../../components/Modal/Modalerror'
+
 const theme = createTheme({
   palette: {
     primary: {

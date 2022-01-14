@@ -57,7 +57,7 @@ const Connexion = () => {
                       console.log(res)
                       // rediriger si submit
 
-                      window.location = '/'
+                      window.location = '/home'
                     }
                   })
                   .catch((err) => console.log(err))
