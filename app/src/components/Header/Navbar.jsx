@@ -8,12 +8,13 @@ import HomeIcon from '@mui/icons-material/Home'
 import MessageIcon from '@mui/icons-material/Message'
 import { Avatar, IconButton } from '@material-ui/core'
 import '../../styles/BorisHeader.css'
-import { useStateValue } from '../StateProvider/StateProvider.jsx'
 import Image from './Untitleddesign-removebg.png' // Import using relative path
 import { useNavigate } from 'react-router-dom'
-import Logout from '../Logout/Logout'
 import { UidContext } from '../AppContext/AppContext'
-
+import cookie from 'js-cookie'
+import axios from 'axios'
+import Logout from '../Logout/Logout'
+import LoginIcon from '@mui/icons-material/Login'
 function refreshPage() {
   window.location.reload(false)
 }
@@ -160,10 +161,13 @@ export default function MenuAppBar() {
                 </MenuItem> */}
                 {uid ? (
                   <MenuItem onClick={(refreshPage, handleClose)}>
-                    Logout
+                    <Logout />
                   </MenuItem>
                 ) : (
-                  <MenuItem onClick={handleConnect}>Connect</MenuItem>
+                  <MenuItem onClick={handleConnect} className="loginlogo">
+                    Connect
+                    <LoginIcon />
+                  </MenuItem>
                 )}
               </div>
             </Menu>

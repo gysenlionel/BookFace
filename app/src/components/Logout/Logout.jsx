@@ -2,6 +2,9 @@ import React from 'react'
 import axios from 'axios'
 // pour enlever le cookie en front
 import cookie from 'js-cookie'
+import '../../styles/Logout.css'
+import LogoutIcon from '@mui/icons-material/Logout'
+import SidebarRow from '../Sidebar/SidebarRow'
 
 const Logout = () => {
   const removeCookie = (key) => {
@@ -23,6 +26,14 @@ const Logout = () => {
 
     window.location = '/'
   }
+  return (
+    <ul className="logout">
+      <li onClick={logout}>
+        Disconnect&emsp;
+        <LogoutIcon />
+      </li>
+    </ul>
+  )
 }
 
 export default Logout

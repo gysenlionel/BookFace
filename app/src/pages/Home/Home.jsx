@@ -6,7 +6,7 @@ import MenuAppBar from '../../components/Header/Navbar'
 const Home = () => {
   return (
     <div>
-      {/* <MenuAppBar /> */}
+      <MenuAppBar />
       <div className="home">
         <Sidebar />
         <Feed />

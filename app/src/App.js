@@ -7,11 +7,13 @@ import React, { useEffect, useState } from 'react'
 import { UidContext } from './components/AppContext/AppContext'
 import axios from 'axios'
 import { async } from '@firebase/util'
+import { useDispatch } from 'react-redux'
+import { getUser } from './actions/user.actions'
 
 function App() {
   // const [{ user }, dispatch] = useStateValue()
   const [uid, setUid] = useState(null)
-
+  const dispatch = useDispatch()
   // useEffect va controlé automatiquement le token de l'user 
   useEffect(() => {
     const fetchToken = async () => {
@@ -24,6 +26,9 @@ function App() {
         .catch((err) => console.log('No token'))
     }
     fetchToken()
+
+    // on va chercher la data et on l'affiche dans le store
+    if (uid) dispatch(getUser(uid))
   }, [uid])
   return (
     // context pour passer id dans toute l app!!

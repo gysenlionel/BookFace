@@ -2,7 +2,7 @@ import React from 'react'
 import '../../styles/Login.scss'
 import { authentification } from '../../components/Firebase/firebase'
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
-import { actionTypes } from '../../components/Reducer/Reducer'
+import { actionTypes } from '../../Reducer/Reducer'
 import { useStateValue } from '../../components/StateProvider/StateProvider'
 import Grid from '@mui/material/Grid'
 /* import Button from '@mui/material/Button' */

@@ -1,0 +1,8 @@
+.logout {
+  list-style-type: none;
+}
+
+.logout > li {
+  display: flex;
+  align-items: center;
+}
