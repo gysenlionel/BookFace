@@ -18,17 +18,22 @@ router.delete("/:id", userController.deleteUser);
 router.patch("/follow/:id", userController.follow);
 router.patch("/unfollow/:id", userController.unfollow);
 
+//
+router.put("/updatePseudoUser/:id", userController.updatePseudoUser)
+
 // upload
+
 const storage = multer.diskStorage({
-    destination:(req,file, cb) => {
+    destination:(req, file, cb) => {
         cb(null, './public/images')
     },
-    filename:(req,file,cb)=>{
+    filename:(req, file, cb)=>{
         cb(null, file.originalname)
+        console.log(file.originalname)
     }
-})
+  })
+  
+const upload = multer({storage: storage});
 
-const upload = multer(storage);
 router.post("/upload", upload.single("file"), uploadController.uploadProfil);
-
 module.exports = router;
