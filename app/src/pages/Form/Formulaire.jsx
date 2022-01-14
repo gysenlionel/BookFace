@@ -36,7 +36,9 @@ const Formulaire = () => {
     firstName: Yup.string().required('Required'),
     lastName: Yup.string().required('Required'),
     email: Yup.string().email('invalid email.').required('Required'),
-    pseudo: Yup.string().required('Required'),
+    pseudo: Yup.string()
+      .required('Required')
+      .min(3, 'Username must be at lest 3 characters'),
     password: Yup.string()
       .required('Password is required')
       .min(6, 'Password must be at least 6 characters'),
@@ -93,6 +95,8 @@ const Formulaire = () => {
                         } else {
                           // rediriger si submit
                           console.log('submit')
+
+                          window.location = '/login'
                           setFormSubmit(true)
                         }
                       })

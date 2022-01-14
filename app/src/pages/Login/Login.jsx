@@ -11,7 +11,10 @@ import { purple } from '@mui/material/colors'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Buttony from './../../components/Button/Button'
 import Carrousel from './../../components/caroussel/carrousel'
-
+import Connexion from '../../components/Connexion/Connexion'
+import Formulaire from '../Form/Formulaire'
+import { useState } from 'react'
+import BasicModal from '../../components/Modal/Modalerror'
 const theme = createTheme({
   palette: {
     primary: {
@@ -24,6 +27,34 @@ const theme = createTheme({
 })
 
 const Login = () => {
+  const [signupmodal, setsignupmodal] = useState(false)
+  const [signinmodal, setsigninmodal] = useState(false)
+  const [carrousel, setcarrousel] = useState(true)
+  const handlemodal = (e) => {
+    const { id } = e.target
+
+    if (id == 'signin') {
+      setsigninmodal((prevValue) => {
+        return !prevValue
+      })
+      setsignupmodal(false)
+      setcarrousel((prevValue) => {
+        return !prevValue
+      })
+    }
+    if (id == 'signup') {
+      if (signupmodal == true) {
+        setsignupmodal(false)
+        setsigninmodal(false)
+        setcarrousel(true)
+      }
+      if (signupmodal == false) {
+        setsignupmodal(true)
+        setcarrousel(false)
+        setsigninmodal(false)
+      }
+    }
+  }
   return (
     <Grid className="login" container spacing={2}>
       <Grid xs={12} container direction="column" alignItems="center">
@@ -42,12 +73,9 @@ const Login = () => {
         alignItems="center"
       >
         <Grid>
-          <Carrousel />
-          {/* <img
-            className="name-logo"
-            src={process.env.PUBLIC_URL + '/friendlybook.png'}
-            alt=""
-          /> */}
+          {carrousel && <Carrousel />}
+          {signinmodal && <Connexion />}
+          {signupmodal && <Formulaire />}
         </Grid>
       </Grid>
       <Grid
@@ -57,11 +85,21 @@ const Login = () => {
         justifyContent="space-around"
         alignItems="center"
       >
-        <button type="submit" onClick={'signIn'} className="button">
+        <button
+          id="signup"
+          type="submit"
+          onClick={handlemodal}
+          className="button"
+        >
           Sign Up
         </button>
 
-        <button type="submit" onClick={'signIn'} className="button">
+        <button
+          id="signin"
+          type="submit"
+          onClick={handlemodal}
+          className="button"
+        >
           Sign In
         </button>
 
