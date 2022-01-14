@@ -8,10 +8,13 @@ import HomeIcon from '@mui/icons-material/Home'
 import MessageIcon from '@mui/icons-material/Message'
 import { Avatar, IconButton } from '@material-ui/core'
 import '../../styles/BorisHeader.css'
-import { useStateValue } from '../StateProvider/StateProvider.jsx'
 import Image from './Untitleddesign-removebg.png' // Import using relative path
 import { useNavigate } from 'react-router-dom'
-
+import { UidContext } from '../AppContext/AppContext'
+import cookie from 'js-cookie'
+import axios from 'axios'
+import Logout from '../Logout/Logout'
+import LoginIcon from '@mui/icons-material/Login'
 function refreshPage() {
   window.location.reload(false)
 }
@@ -23,6 +26,9 @@ const styles = {
 }
 
 export default function MenuAppBar() {
+  // récupère l'id user
+  const uid = React.useContext(UidContext)
+
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = React.useState(false)
   const handleDown = () => {
@@ -30,6 +36,11 @@ export default function MenuAppBar() {
     setAnchorEl(null)
   }
   const handleClose = () => {
+    setAnchorEl(null)
+  }
+  // a changé redirigé vers login quand elle sera prête !
+  const handleConnect = () => {
+    navigate('/connexion')
     setAnchorEl(null)
   }
 
@@ -62,6 +73,7 @@ export default function MenuAppBar() {
               }
             >
               <IconButton
+                size="medium"
                 edge="start"
                 className="essai"
                 aria-label="menu"
@@ -71,6 +83,7 @@ export default function MenuAppBar() {
                 <p sx={{ pl: 2 }}> Home </p>
               </IconButton>
               <IconButton
+                size="medium"
                 edge="start"
                 aria-label="menu"
                 className="essai"
@@ -84,6 +97,7 @@ export default function MenuAppBar() {
             {/*  EN Mobile */}
             <Box sx={{ display: { xs: 'initial', md: 'initial', lg: 'none' } }}>
               <IconButton
+                size="medium"
                 edge="start"
                 className="essai"
                 aria-label="menu"
@@ -93,6 +107,7 @@ export default function MenuAppBar() {
                 <HomeIcon />
               </IconButton>
               <IconButton
+                size="medium"
                 edge="start"
                 className="essai"
                 aria-label="menu"
@@ -144,8 +159,16 @@ export default function MenuAppBar() {
                   <button onClick={() => setIsOpen(true)}>Edit Profile</button>
                   {isOpen && <Modal setIsOpen={setIsOpen} />}
                 </MenuItem> */}
-
-                <MenuItem onClick={(refreshPage, handleClose)}>Logout</MenuItem>
+                {uid ? (
+                  <MenuItem onClick={(refreshPage, handleClose)}>
+                    <Logout />
+                  </MenuItem>
+                ) : (
+                  <MenuItem onClick={handleConnect} className="loginlogo">
+                    Connect
+                    <LoginIcon />
+                  </MenuItem>
+                )}
               </div>
             </Menu>
           </div>
