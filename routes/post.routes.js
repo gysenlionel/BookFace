@@ -1,10 +1,25 @@
 const router = require('express').Router();
 const postController = require('../controllers/post.controller');
 const multer = require("multer");
-const upload = multer();
+
 
 router.get('/', postController.readPost);
-router.post('/', postController.createPost);
+
+//Create a Post with an image
+const storage = multer.diskStorage({
+    destination:(req, file, cb) => {
+        cb(null, './app/public/postImages')
+    },
+    filename:(req, file, cb)=>{
+        cb(null, file.originalname)
+        console.log(file.originalname)
+    }
+  })
+  
+const upload = multer({storage: storage});
+
+router.post('/', upload.single("file"), postController.createPost);
+
 router.put('/:id', postController.updatePost);
 router.delete('/:id', postController.deletePost);
 router.patch('/like-post/:id', postController.likePost);

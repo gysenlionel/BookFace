@@ -4,33 +4,41 @@ import '../../styles/Feed.css'
 import MessageSender from '../MessageSender/MessageSender'
 import Post from '../Post/Post'
 import StoryReel from '../StoryReel/StoryReel'
-import db from '../Firebase/firebase'
+import { useDispatch, useSelector } from 'react-redux'
+import { getPosts } from '../../actions/post.actions'
+import { isEmpty } from '@firebase/util'
 
 const Feed = () => {
-  const [posts, setPosts] = useState([])
-
+  // state du post
+  const [loadPost, setLoadPost] = useState(true)
+  //   permet d'envoyé une action
+  const dispatch = useDispatch()
+  //   une fois l'action lancé, récupéré les valeurs dans un store
+  const posts = useSelector((state) => state.postReducer)
+  // chargement des post
   useEffect(() => {
-    // db.collection('posts').
-
-    onSnapshot(collection(db, 'posts'), (snapshot) => {
-      setPosts(snapshot.docs.map((doc) => doc.data()))
-    })
-  }, [])
+    if (loadPost) {
+      dispatch(getPosts())
+      setLoadPost(false)
+    }
+  }, [loadPost, dispatch])
 
   return (
     <div className="feed">
       {/*   <StoryReel /> */}
       <MessageSender />
-      {posts.map((post, index) => (
-        <Post
-          key={index}
-          profilePic={post.profilePic}
-          message={post.message}
-          timestamp={post.timestamp}
-          username={post.username}
-          image={post.image}
-        />
-      ))}
+      {/* map de toutes les données post */}
+      {!isEmpty(posts[0]) &&
+        posts.map((post) => (
+          <Post
+            key={post._id}
+            post={post.posterId}
+            message={post.message}
+            timestamp={post.updatedAt}
+            username=""
+            image=""
+          />
+        ))}
     </div>
   )
 }

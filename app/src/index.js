@@ -14,12 +14,15 @@ import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 // centralisateur de reducers
 import rootReducer from './Reducer/index'
+import { getUsers } from './actions/users.actions'
 // faire marché les  outils de dev (redux-devtools)
 // thunk permet de faire des req async avec redux
 // logger pas obligé outils pour voir les info dans la console
 const store = createStore(
   rootReducer, composeWithDevTools(applyMiddleware(thunk, logger))
 )
+// avoir tout la data des users
+store.dispatch(getUsers())
 
 ReactDOM.render(
 

@@ -65,3 +65,8 @@
   background-color: #eff2f5;
   border-radius: 10px;
 }
+
+.spinner {
+  display: flex;
+  justify-content: center;
+}
