@@ -18,7 +18,8 @@ const Post = ({ post, timestamp, message, image, video }) => {
   const usersData = useSelector((state) => state.usersReducer)
   // data du client
   const userData = useSelector((state) => state.userReducer)
-
+  // data comments
+  const commentsData = useSelector((state) => state.postReducer)
   // useEffect pour le spinner
   useEffect(() => {
     !isEmpty(usersData[0]) && setIsLoading(false)
@@ -68,7 +69,7 @@ const Post = ({ post, timestamp, message, image, video }) => {
               width="560"
               height="315"
               src={video}
-              title="title"
+              title={commentsData._id}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
