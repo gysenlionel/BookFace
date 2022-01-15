@@ -25,6 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Profile() {
   // accès id user
   const uid = useContext(UidContext)
+  console.log(uid)
   // accès aux data user
   const userData = useSelector((state) => state.userReducer)
 

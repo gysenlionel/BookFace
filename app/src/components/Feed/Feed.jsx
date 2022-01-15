@@ -32,7 +32,7 @@ const Feed = () => {
         posts.map((post) => (
           <Post
             key={post._id}
-            profilePic="https://cdn.discordapp.com/attachments/892016748855959593/931558988741484564/main.png"
+            post={post.posterId}
             message={post.message}
             timestamp={post.updatedAt}
             username=""

@@ -16,6 +16,7 @@ import axios from 'axios'
 import Logout from '../Logout/Logout'
 import LoginIcon from '@mui/icons-material/Login'
 import { useSelector } from 'react-redux'
+
 function refreshPage() {
   window.location.reload(false)
 }
@@ -129,7 +130,7 @@ export default function MenuAppBar() {
               onClick={handleMenu}
             >
               <Box sx={{ mr: 1 }}>
-                <Avatar src="" />
+                <Avatar src={userData.picture} />
               </Box>
               <Box>
                 <p>{userData.pseudo}</p>

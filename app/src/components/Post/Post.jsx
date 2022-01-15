@@ -10,7 +10,7 @@ import { useState } from 'react'
 import Spinner from '../Spinner/Spinner'
 import { useSelector } from 'react-redux'
 import { isEmpty } from '@firebase/util'
-const Post = ({ profilePic, image, username, timestamp, message }) => {
+const Post = ({ post, image, username, timestamp, message }) => {
   // spinner
   const [isLoading, setIsLoading] = useState(true)
 
@@ -19,44 +19,57 @@ const Post = ({ profilePic, image, username, timestamp, message }) => {
   // data du client
   const userData = useSelector((state) => state.userReducer)
 
-  // useEffect(() => {
-  //   !isEmpty(usersData[0]) && setIsLoading(false)
-  // }, [usersData])
+  // useEffect pour le spinner
+  useEffect(() => {
+    !isEmpty(usersData[0]) && setIsLoading(false)
+  }, [usersData])
   return (
     <div className="post">
-      {/* {isLoading ? (
-        <Spinner />
-      ) : ( */}
-      <>
-        <div className="post__top">
-          <Avatar src={profilePic} className="post__avatar" />
-          <div className="post__topInfo">
-            <h3>{username}</h3>
-            <p>{timestamp}</p>
-          </div>
+      {isLoading ? (
+        <div className="spinner">
+          <Spinner />
         </div>
-
-        <div className="post__bottom">
-          <p>{message}</p>
-        </div>
-
-        <div className="post__image">
-          <img src={image} alt="" />
-        </div>
-
-        <div className="post__options">
-          <div className="post__option">
-            <ThumbUpIcon />
-            <p>Feel</p>
+      ) : (
+        <>
+          <div className="post__top">
+            <Avatar
+              src={
+                !isEmpty(usersData[0]) &&
+                usersData
+                  .map((user) => {
+                    if (user._id === post) return user.picture
+                  })
+                  .join('')
+              }
+              className="post__avatar"
+            />
+            <div className="post__topInfo">
+              <h3>{username}</h3>
+              <p>{timestamp}</p>
+            </div>
           </div>
 
-          <div className="post__option">
-            <ChatBubbleIcon />
-            <p>Comment</p>
+          <div className="post__bottom">
+            <p>{message}</p>
           </div>
-        </div>
-      </>
-      {/* )} */}
+
+          <div className="post__image">
+            <img src={image} alt="" />
+          </div>
+
+          <div className="post__options">
+            <div className="post__option">
+              <ThumbUpIcon />
+              <p>Feel</p>
+            </div>
+
+            <div className="post__option">
+              <ChatBubbleIcon />
+              <p>Comment</p>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   )
 }
