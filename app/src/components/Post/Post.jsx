@@ -44,7 +44,14 @@ const Post = ({ post, image, username, timestamp, message }) => {
               className="post__avatar"
             />
             <div className="post__topInfo">
-              <h3>{username}</h3>
+              <h3>
+                {!isEmpty(usersData[0]) &&
+                  usersData
+                    .map((user) => {
+                      if (user._id === post) return user.pseudo
+                    })
+                    .join('')}
+              </h3>
               <p>{timestamp}</p>
             </div>
           </div>
