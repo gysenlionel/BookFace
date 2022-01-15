@@ -52,13 +52,16 @@ const userSchema = new mongoose.Schema(
       type: [String]
     },
     address:{
-      type: String
+      type: String,
+      required: true
     },
     city:{
-      type: String
+      type: String,
+      required: true
     },
     country: {
-      type: String
+      type: String,
+      required: true
     }
   },
   {
