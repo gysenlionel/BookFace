@@ -70,7 +70,7 @@ const Formulaire = () => {
                   // direction pour submit le form!
                   onSubmit={async (values) => {
                     const pseudo = values.pseudo
-                    const firstname = values.lastName
+                    const firstname = values.firstName
                     const name = values.lastName
                     const email = values.email
                     const password = values.password
@@ -96,7 +96,7 @@ const Formulaire = () => {
                           // rediriger si submit
                           console.log('submit')
 
-                          window.location = '/login'
+                          window.location = '/'
                           setFormSubmit(true)
                         }
                       })

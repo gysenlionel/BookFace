@@ -15,12 +15,6 @@ import { Formik, Form } from 'formik'
 import MenuAppBar from '../../components/Header/Navbar'
 import { UidContext } from '../../components/AppContext/AppContext'
 import { useSelector } from 'react-redux'
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}))
 
 export default function Profile() {
   // accès id user
@@ -59,7 +53,6 @@ export default function Profile() {
               direction="column"
               justifyContent="center"
               alignItems="center"
-              item
               xs={12}
             >
               <Avatar
@@ -79,7 +72,6 @@ export default function Profile() {
                   alignItems="center"
                   direction="column"
                   sx={{ mt: 3, mb: 2 }}
-                  item
                   xs={10}
                 >
                   <Box>
@@ -92,7 +84,7 @@ export default function Profile() {
                     alignItems="center"
                     xs={12}
                   >
-                    <Grid item xs={5}>
+                    <Grid xs={5}>
                       <TextField
                         style={{ width: '100%' }}
                         name="city"
@@ -100,7 +92,7 @@ export default function Profile() {
                         id="City"
                       />
                     </Grid>
-                    <Grid item xs={5}>
+                    <Grid xs={5}>
                       <TextField
                         style={{ width: '100%' }}
                         name="LastName"
@@ -109,7 +101,7 @@ export default function Profile() {
                       />
                     </Grid>
                   </Grid>
-                  <Grid item xs={1}>
+                  <Grid xs={1}>
                     <button className="saveBtn">save</button>
                   </Grid>
                 </Grid>
@@ -121,7 +113,6 @@ export default function Profile() {
                   alignItems="center"
                   direction="column"
                   sx={{ mt: 3, mb: 2 }}
-                  item
                   xs={10}
                 >
                   <Box>
@@ -134,7 +125,7 @@ export default function Profile() {
                     alignItems="center"
                     xs={12}
                   >
-                    <Grid item xs={12}>
+                    <Grid xs={12}>
                       <TextField
                         style={{ width: '100%' }}
                         name="Email"
@@ -143,7 +134,7 @@ export default function Profile() {
                       />
                     </Grid>
                   </Grid>
-                  <Grid item xs={1}>
+                  <Grid xs={1}>
                     <button className="saveBtn">save</button>
                   </Grid>
                 </Grid>
@@ -155,7 +146,6 @@ export default function Profile() {
                   alignItems="center"
                   direction="column"
                   sx={{ mt: 3, mb: 2 }}
-                  item
                   xs={10}
                 >
                   <Box>
@@ -178,7 +168,6 @@ export default function Profile() {
                     alignItems="center"
                     direction="column"
                     sx={{ mb: 2 }}
-                    item
                     xs={10}
                   >
                     <Grid
@@ -188,7 +177,7 @@ export default function Profile() {
                       alignItems="center"
                       xs={12}
                     >
-                      <Grid item xs={5}>
+                      <Grid xs={5}>
                         <TextField
                           style={{ width: '100%' }}
                           name="FirstName"
@@ -196,7 +185,7 @@ export default function Profile() {
                           id="FirstName"
                         />
                       </Grid>
-                      <Grid item xs={5}>
+                      <Grid xs={5}>
                         <SelectWrapper
                           fullWidth
                           name="country"
@@ -205,7 +194,7 @@ export default function Profile() {
                         />
                       </Grid>
                     </Grid>
-                    <Grid item xs={1}>
+                    <Grid xs={1}>
                       <button className="saveBtn">save</button>
                     </Grid>
                   </Grid>
