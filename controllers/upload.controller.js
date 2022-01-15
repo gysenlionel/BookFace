@@ -4,7 +4,7 @@ const multer = require('multer')
 let uploaded = false
 
 module.exports.uploadProfil = async (req, res) => {
-
+console.log(req.file)
   try {
     if (
       req.file.mimetype != "image/jpg" &&
@@ -27,7 +27,7 @@ module.exports.uploadProfil = async (req, res) => {
       await UserModel.findByIdAndUpdate(
         req.body.userId,
         {
-          $set : {picture: './' + req.file.path },
+          $set : {picture: './' + req.file.originalname },
           
         },
         { new: true, upsert: true, setDefaultsOnInsert: true},
