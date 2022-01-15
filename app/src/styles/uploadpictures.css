@@ -1,0 +1,41 @@
+.button1 {
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  font-size: 1em;
+
+  background: -webkit-linear-gradient(
+    89deg,
+    rgb(41, 196, 201),
+    rgb(121, 244, 218)
+  );
+
+  color: #eff2f5;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+}
+.button2 {
+  margin-left: 150px;
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  font-size: 1em;
+
+  background: -webkit-linear-gradient(
+    89deg,
+    rgb(41, 196, 201),
+    rgb(121, 244, 218)
+  );
+
+  color: #ffffff;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+}
+
+.button2:hover {
+  box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
+  transform: translateY(-5px);
+  background: #23ac01;
+}

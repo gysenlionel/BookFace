@@ -261,68 +261,20 @@ export default function Profile() {
           </Form>
         </Formik>
         {/*  TROISIEME PICTUUUUUUUUUUUUUUUUUUUUUURE */}
-        <Formik
-          initialValues={{ ...INITIAL_FORM_STATE }}
-          // direction pour submit le form!
-          onSubmit={async (values) => {
-            const picture = values.pictures
-            // fetch via axios
-            await axios({
-              method: 'post',
-              url: `${process.env.REACT_APP_API_URL}api/user/upload/`,
-              data: { picture },
-            })
-              .then((res) => {
-                if (res.data.errors) {
-                  // renvoyé les erreurs du back (à afficher dans une div)
-                } else {
-                  // rediriger si submit
-                  console.log('submit')
 
-                  window.location = '/profil'
-                }
-              })
-              .catch((err) => console.log(err))
-          }}
-        >
-          <Form>
-            <Grid alignItems="center" justifyContent="space-around" container>
-              <Grid
-                justifyContent="space-between"
-                alignItems="center"
-                direction="column"
-                sx={{ mt: 3, mb: 2 }}
-                xs={10}
-              >
-                <Box>
-                  <h2>Edit Pictures : </h2>
-                </Box>
-                <Grid
-                  container
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  xs={12}
-                >
-                  <Grid xs={8}>
-                    <TextField
-                      type="file"
-                      style={{ width: '100%' }}
-                      name="pictures"
-                      id="Pictures"
-                    />
-                  </Grid>
-
-                  <Grid xs={3}>
-                    <Submit className="saveBtn"> Save </Submit>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Form>
-        </Formik>
-
-        <Uploadpictures />
+        <Grid alignItems="center" justifyContent="space-around" container>
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+            xs={10}
+            sx={{ mt: 3, mb: 2 }}
+          >
+            <h2>Edit Pictures : </h2>
+            <Uploadpictures />
+          </Grid>
+        </Grid>
       </div>
     </>
   )
