@@ -7,6 +7,7 @@ import StoryReel from '../StoryReel/StoryReel'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPosts } from '../../actions/post.actions'
 import { isEmpty } from '@firebase/util'
+import { dateParser } from '../../utils/date'
 
 const Feed = () => {
   // state du post
@@ -34,9 +35,9 @@ const Feed = () => {
             key={post._id}
             post={post.posterId}
             message={post.message}
-            timestamp={post.updatedAt}
-            username=""
-            image=""
+            timestamp={dateParser(post.createdAt)}
+            image={post.picture}
+            video={post.video}
           />
         ))}
     </div>

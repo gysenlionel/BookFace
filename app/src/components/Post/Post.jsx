@@ -10,7 +10,7 @@ import { useState } from 'react'
 import Spinner from '../Spinner/Spinner'
 import { useSelector } from 'react-redux'
 import { isEmpty } from '@firebase/util'
-const Post = ({ post, image, username, timestamp, message }) => {
+const Post = ({ post, timestamp, message, image, video }) => {
   // spinner
   const [isLoading, setIsLoading] = useState(true)
 
@@ -61,8 +61,19 @@ const Post = ({ post, image, username, timestamp, message }) => {
           </div>
 
           <div className="post__image">
-            <img src={image} alt="" />
+            {image && <img src={image} alt="pic" />}
           </div>
+          {video && (
+            <iframe
+              width="560"
+              height="315"
+              src={video}
+              title="title"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          )}
 
           <div className="post__options">
             <div className="post__option">
