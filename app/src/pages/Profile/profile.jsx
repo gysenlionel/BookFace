@@ -17,6 +17,14 @@ import axios from 'axios'
 import * as Yup from 'yup'
 
 export default function Profile() {
+  const FORM_one = Yup.object().shape({
+    firstName: Yup.string().required('Required'),
+    LastName: Yup.string().required('Required'),
+    pseudo: Yup.string()
+      .required('Required')
+      .min(3, 'Username must be at lest 3 characters'),
+  })
+
   const FORM_email = Yup.object().shape({
     email: Yup.string().email('invalid email.').required('Required'),
   })
@@ -45,14 +53,6 @@ export default function Profile() {
     city: '',
     country: '',
   }
-
-  const FORM_one = Yup.object().shape({
-    firstName: Yup.string().required('Required'),
-    LastName: Yup.string().required('Required'),
-    pseudo: Yup.string()
-      .required('Required')
-      .min(3, 'Username must be at lest 3 characters'),
-  })
 
   return (
     <>
@@ -132,7 +132,7 @@ export default function Profile() {
                     <TextfieldWrapper
                       style={{ width: '100%' }}
                       name="pseudo"
-                      label="pseudo"
+                      label={userData.pseudo}
                       id="pseudo"
                     />
                   </Grid>
@@ -140,7 +140,7 @@ export default function Profile() {
                     <TextfieldWrapper
                       style={{ width: '100%' }}
                       name="firstName"
-                      label="firstName"
+                      label={userData.firstname}
                       id="firstName"
                     />
                   </Grid>
@@ -148,7 +148,7 @@ export default function Profile() {
                     <TextfieldWrapper
                       style={{ width: '100%' }}
                       name="LastName"
-                      label="LastName"
+                      label={userData.name}
                       id="LastName"
                     />
                   </Grid>
