@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid'
 import { Avatar, IconButton } from '@material-ui/core'
 import './../../styles/profilcss.css'
 import TextField from '@mui/material/TextField'
-import SelectWrapper from '../../components/FormUI/SelectWrapper/SelectWrapper'
+import TextfieldWrapper from '../../components/FormUI/textfield/Textfields'
 import countries from '../../data/countries.json'
 import { Formik, Form } from 'formik'
 import MenuAppBar from '../../components/Header/Navbar'
@@ -17,9 +17,14 @@ import axios from 'axios'
 import * as Yup from 'yup'
 
 export default function Profile() {
-  const FORM_name = Yup.object().shape({
-    firstName: Yup.string().required('Required'),
-    lastName: Yup.string().required('Required'),
+  const FORM_email = Yup.object().shape({
+    email: Yup.string().email('invalid email.').required('Required'),
+  })
+
+  const FORM_adress = Yup.object().shape({
+    addressLine1: Yup.string().required('Required'),
+    city: Yup.string().required('Required'),
+    country: Yup.string().required('Required'),
   })
 
   // accès id user
@@ -27,12 +32,27 @@ export default function Profile() {
   // accès aux data user
   const userData = useSelector((state) => state.userReducer)
 
-  /*  const [{ user }, dispatch] = useStateValue() */
-  const INITIAL_Name = {
+  const INITIAL_FORM_STATE = {
     firstName: '',
     lastName: '',
+    email: '',
     pseudo: '',
+    password: '',
+    confirmPassword: '',
+    birthday: '',
+    addressLine1: '',
+    city: '',
+    country: '',
   }
+
+  const FORM_one = Yup.object().shape({
+    firstName: Yup.string().required('Required'),
+    LastName: Yup.string().required('Required'),
+    pseudo: Yup.string()
+      .required('Required')
+      .min(3, 'Username must be at lest 3 characters'),
+  })
+
   return (
     <>
       <MenuAppBar />
@@ -61,35 +81,27 @@ export default function Profile() {
 
       <div className="background">
         <Formik
-          initialValues={{ ...INITIAL_Name }}
-          // direction pour submit le form!
+          initialValues={{ ...INITIAL_FORM_STATE }}
+          validationSchema={FORM_one}
           onSubmit={async (values) => {
-            const firstname = values.firstName
-            const name = values.lastName
             const pseudo = values.pseudo
-
-            // fetch via axios
             await axios({
               method: 'put',
-              url: `${process.env.REACT_APP_API_URL}api/user/` + uid,
+              url:
+                `${process.env.REACT_APP_API_URL}api/user/updatePseudoUser/` +
+                uid,
               data: {
                 pseudo,
-                firstname,
-                name,
               },
             })
               .then((res) => {
                 if (res.data.errors) {
                   // renvoyé les erreurs du back (à afficher dans une div)
                   console.log(res.data.errors.pseudo)
-                  console.log(res.data.errors.email)
-                  console.log(res.data.errors.password)
                 } else {
                   // rediriger si submit
                   console.log('submit')
-
                   window.location = '/profil'
-                  /*  setFormSubmit(true) */
                 }
               })
               .catch((err) => console.log(err))
@@ -116,7 +128,7 @@ export default function Profile() {
                   xs={12}
                 >
                   <Grid item xs={3}>
-                    <TextField
+                    <TextfieldWrapper
                       style={{ width: '100%' }}
                       name="pseudo"
                       label="pseudo"
@@ -124,7 +136,7 @@ export default function Profile() {
                     />
                   </Grid>
                   <Grid item xs={3}>
-                    <TextField
+                    <TextfieldWrapper
                       style={{ width: '100%' }}
                       name="firstName"
                       label="firstName"
@@ -132,7 +144,7 @@ export default function Profile() {
                     />
                   </Grid>
                   <Grid item xs={3}>
-                    <TextField
+                    <TextfieldWrapper
                       style={{ width: '100%' }}
                       name="LastName"
                       label="LastName"
@@ -149,79 +161,67 @@ export default function Profile() {
         </Formik>
         {/* DEUXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIEME */}
         <Grid alignItems="center" justifyContent="space-around" container>
-          {/*        <Formik
+          <Formik
             initialValues={{ ...INITIAL_FORM_STATE }}
-            validationSchema={FORM_VALIDATION}
-            // direction pour submit le form!
+            validationSchema={FORM_email}
             onSubmit={async (values) => {
-              const pseudo = values.pseudo
-              const firstname = values.lastName
-              const name = values.lastName
               const email = values.email
-              const password = values.password
-              // fetch via axios
               await axios({
-                method: 'post',
-                url: `${process.env.REACT_APP_API_URL}api/user/register`,
+                method: 'put',
+                url:
+                  `${process.env.REACT_APP_API_URL}api/user/updatePseudoUser/` +
+                  uid,
                 data: {
-                  pseudo,
-                  firstname,
-                  name,
                   email,
-                  password,
                 },
               })
                 .then((res) => {
                   if (res.data.errors) {
                     // renvoyé les erreurs du back (à afficher dans une div)
-                    console.log(res.data.errors.pseudo)
                     console.log(res.data.errors.email)
-                    console.log(res.data.errors.password)
                   } else {
                     // rediriger si submit
                     console.log('submit')
-
-                    window.location = '/login'
-                    setFormSubmit(true)
+                    window.location = '/profil'
                   }
                 })
                 .catch((err) => console.log(err))
             }}
           >
-            <Form> */}
-          <Grid
-            justifyContent="space-between"
-            alignItems="center"
-            direction="column"
-            sx={{ mt: 3, mb: 2 }}
-            item
-            xs={10}
-          >
-            <Box>
-              <h2>Edit Mail: </h2>
-            </Box>
-            <Grid
-              container
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              xs={12}
-            >
-              <Grid item xs={12}>
-                <TextField
-                  style={{ width: '100%' }}
-                  name="Email"
-                  label="Email"
-                  id="Email"
-                />
+            <Form>
+              <Grid
+                justifyContent="space-between"
+                alignItems="center"
+                direction="column"
+                sx={{ mt: 3, mb: 2 }}
+                item
+                xs={10}
+              >
+                <Box>
+                  <h2>Edit Mail: </h2>
+                </Box>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  xs={12}
+                >
+                  <Grid item xs={12}>
+                    <TextfieldWrapper
+                      style={{ width: '100%' }}
+                      name="Email"
+                      label="Email"
+                      id="Email"
+                    />
+                  </Grid>
+                </Grid>
+                <Grid item xs={1}>
+                  <button className="saveBtn">save</button>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid item xs={1}>
-              <button className="saveBtn">save</button>
-            </Grid>
-          </Grid>
-          {/*   </Form>
-          </Formik> */}
+            </Form>
+          </Formik>
         </Grid>
 
         {/*        TROISIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEME */}

@@ -22,6 +22,14 @@ const Formulaire = () => {
   const INITIAL_FORM_STATE = {
     firstName: '',
     lastName: '',
+    email: '',
+    pseudo: '',
+    password: '',
+    confirmPassword: '',
+    birthday: '',
+    addressLine1: '',
+    city: '',
+    country: '',
   }
   // verification input avec Yup
   const FORM_VALIDATION = Yup.object().shape({
