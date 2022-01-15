@@ -14,9 +14,11 @@ const userSchema = new mongoose.Schema(
     },
     firstname: {
       type: String,
+      required: true
     },
     name: {
-      type: String
+      type: String,
+      required: true
     },
     email: {
       type: String,
@@ -48,6 +50,15 @@ const userSchema = new mongoose.Schema(
     },
     likes: {
       type: [String]
+    },
+    address:{
+      type: String
+    },
+    city:{
+      type: String
+    },
+    country: {
+      type: String
     }
   },
   {
