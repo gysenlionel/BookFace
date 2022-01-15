@@ -64,17 +64,20 @@ const Post = ({ post, timestamp, message, image, video }) => {
           <div className="post__image">
             {image && <img src={image} alt="pic" />}
           </div>
-          {video && (
-            <iframe
-              width="560"
-              height="315"
-              src={video}
-              title={commentsData._id}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          )}
+
+          <div className="post__video">
+            {video && (
+              <iframe
+                width="560"
+                height="315"
+                src={video}
+                title={commentsData._id}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            )}
+          </div>
 
           <div className="post__options">
             <div className="post__option">
