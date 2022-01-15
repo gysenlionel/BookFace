@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { styled } from '@mui/material/styles'
+
 import Box from '@mui/material/Box'
 import SelectWrapper from '../../components/FormUI/SelectWrapper/SelectWrapper'
 import Grid from '@mui/material/Grid'
@@ -15,6 +15,8 @@ import { useSelector } from 'react-redux'
 import Submit from '../../components/FormUI/Submit/Submit'
 import axios from 'axios'
 import * as Yup from 'yup'
+import { useForm } from 'react-hook-form'
+import Uploadpictures from './uploadpictures'
 
 export default function Profile() {
   const FORM_one = Yup.object().shape({
@@ -48,6 +50,7 @@ export default function Profile() {
     addressLine1: '',
     city: '',
     country: '',
+    pictures: '',
   }
 
   return (
@@ -151,7 +154,7 @@ export default function Profile() {
                     />
                   </Grid>
                 </Grid>
-                <Grid xs={1}>
+                <Grid sx={{ mt: 3, mb: 2 }} xs={1}>
                   <Submit className="saveBtn"> Save </Submit>
                 </Grid>
               </Grid>
@@ -160,43 +163,46 @@ export default function Profile() {
         </Formik>
         {/* DEUXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIEME */}
 
-        {/*        TROISIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEME */}
+        <Formik
+          initialValues={{ ...INITIAL_FORM_STATE }}
+          validationSchema={FORM_adress}
+          // direction pour submit le form!
+          onSubmit={async (values) => {
+            const address = values.addressLine1
+            const country = values.country
+            const city = values.city
+            // fetch via axios
+            await axios({
+              method: 'put',
+              url:
+                `${process.env.REACT_APP_API_URL}api/user/updateLocationUser/` +
+                uid,
+              data: {
+                address,
+                country,
+                city,
+              },
+            })
+              .then((res) => {
+                if (res.data.errors) {
+                  // renvoyé les erreurs du back (à afficher dans une div)
+                } else {
+                  // rediriger si submit
+                  console.log('submit')
 
-        <Grid alignItems="center" justifyContent="space-around" container>
-          <Formik
-            initialValues={{ ...INITIAL_FORM_STATE }}
-            validationSchema={FORM_adress}
-            // direction pour submit le form!
-            onSubmit={async (values) => {
-              const addressLine1 = values.addressLine1
-              const country = values.country
-              const city = values.city
-              // fetch via axios
-              await axios({
-                method: 'put',
-                url:
-                  `${process.env.REACT_APP_API_URL}api/user/updateLocationUser/` +
-                  uid,
-                data: {
-                  addressLine1,
-                  country,
-                  city,
-                },
+                  window.location = '/profil'
+                }
               })
-                .then((res) => {
-                  if (res.data.errors) {
-                    // renvoyé les erreurs du back (à afficher dans une div)
-                  } else {
-                    // rediriger si submit
-                    console.log('submit')
-
-                    window.location = '/profil'
-                  }
-                })
-                .catch((err) => console.log(err))
-            }}
-          >
-            <Form>
+              .catch((err) => console.log(err))
+          }}
+        >
+          <Form>
+            <Grid
+              alignItems="center"
+              justifyContent="space-around"
+              container
+              xs={12}
+            >
               <Grid
                 justifyContent="space-between"
                 alignItems="center"
@@ -210,7 +216,7 @@ export default function Profile() {
                 <TextfieldWrapper
                   style={{ width: '100%' }}
                   name="addressLine1"
-                  label="Address"
+                  label={userData.address}
                 />
               </Grid>
 
@@ -219,7 +225,7 @@ export default function Profile() {
                   justifyContent="space-between"
                   alignItems="center"
                   direction="column"
-                  sx={{ mb: 2 }}
+                  item
                   xs={10}
                 >
                   <Grid
@@ -233,27 +239,90 @@ export default function Profile() {
                       <TextfieldWrapper
                         style={{ width: '100%' }}
                         name="city"
-                        label="city"
+                        label={userData.city}
                         id="city"
                       />
                     </Grid>
                     <Grid xs={5}>
                       <SelectWrapper
-                        fullWidth
+                        style={{ width: '100%' }}
                         name="country"
                         label="country"
                         options={countries}
                       />
                     </Grid>
                   </Grid>
-                  <Grid xs={1}>
-                    <button className="saveBtn">save</button>
+                  <Grid sx={{ mt: 3, mb: 2 }} xs={1}>
+                    <Submit className="saveBtn"> Save </Submit>
                   </Grid>
                 </Grid>
               </Grid>
-            </Form>
-          </Formik>
-        </Grid>
+            </Grid>
+          </Form>
+        </Formik>
+        {/*  TROISIEME PICTUUUUUUUUUUUUUUUUUUUUUURE */}
+        <Formik
+          initialValues={{ ...INITIAL_FORM_STATE }}
+          // direction pour submit le form!
+          onSubmit={async (values) => {
+            const picture = values.pictures
+            // fetch via axios
+            await axios({
+              method: 'post',
+              url: `${process.env.REACT_APP_API_URL}api/user/upload/`,
+              data: { picture },
+            })
+              .then((res) => {
+                if (res.data.errors) {
+                  // renvoyé les erreurs du back (à afficher dans une div)
+                } else {
+                  // rediriger si submit
+                  console.log('submit')
+
+                  window.location = '/profil'
+                }
+              })
+              .catch((err) => console.log(err))
+          }}
+        >
+          <Form>
+            <Grid alignItems="center" justifyContent="space-around" container>
+              <Grid
+                justifyContent="space-between"
+                alignItems="center"
+                direction="column"
+                sx={{ mt: 3, mb: 2 }}
+                xs={10}
+              >
+                <Box>
+                  <h2>Edit Pictures : </h2>
+                </Box>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  xs={12}
+                >
+                  <Grid xs={8}>
+                    <TextField
+                      type="file"
+                      style={{ width: '100%' }}
+                      name="pictures"
+                      id="Pictures"
+                    />
+                  </Grid>
+
+                  <Grid xs={3}>
+                    <Submit className="saveBtn"> Save </Submit>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Form>
+        </Formik>
+
+        <Uploadpictures />
       </div>
     </>
   )
