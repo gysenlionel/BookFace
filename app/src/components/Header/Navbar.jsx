@@ -44,7 +44,7 @@ export default function MenuAppBar() {
   }
   // a changé redirigé vers login quand elle sera prête !
   const handleConnect = () => {
-    navigate('/connexion')
+    navigate('/')
     setAnchorEl(null)
   }
 
@@ -60,7 +60,7 @@ export default function MenuAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="relative" color="transparent">
         <Toolbar style={styles.paperContainer} className="headerboris">
-          <IconButton aria-label="menu" onClick={() => navigate('/')}>
+          <IconButton aria-label="menu" onClick={() => navigate('/home')}>
             <img
               className="pictures"
               src={process.env.PUBLIC_URL + '/logo_transparentcenter.png'}
@@ -81,7 +81,7 @@ export default function MenuAppBar() {
                 edge="start"
                 className="essai"
                 aria-label="menu"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/home')}
               >
                 <HomeIcon sx={{ pr: 1 }} />
                 <p sx={{ pl: 2 }}> Home </p>
@@ -92,7 +92,7 @@ export default function MenuAppBar() {
                 aria-label="menu"
                 className="essai"
                 sx={{ mr: 5, ml: 5 }}
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/home')}
               >
                 <MessageIcon sx={{ pr: 1 }} />
                 <p sx={{ pl: 2 }}> Message </p>
@@ -106,7 +106,7 @@ export default function MenuAppBar() {
                 className="essai"
                 aria-label="menu"
                 sx={{ mr: 5, ml: 5 }}
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/home')}
               >
                 <HomeIcon />
               </IconButton>
@@ -116,7 +116,7 @@ export default function MenuAppBar() {
                 className="essai"
                 aria-label="menu"
                 sx={{ mr: 5, ml: 5 }}
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/home')}
               >
                 <MessageIcon />
               </IconButton>
