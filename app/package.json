@@ -28,6 +28,7 @@
     "react-scripts": "5.0.0",
     "react-slideshow-image": "^3.6.1",
     "react-spring-carousel-js": "^1.9.30",
+    "reactjs-popup": "^2.0.5",
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
