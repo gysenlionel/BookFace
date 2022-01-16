@@ -23,7 +23,7 @@ let picture = ""
         throw Error("invalid file");
 
       if (req.file.size > 500000) throw Error("max size");
-      picture = './' + req.file.originalname
+      picture = './postImages/' + req.file.originalname
     } catch (err) {
       const errors = uploadErrors(err);
       return res.status(201).json({ errors });
