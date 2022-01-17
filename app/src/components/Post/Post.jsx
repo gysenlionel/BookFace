@@ -1,7 +1,6 @@
 import { Avatar } from '@mui/material'
 import React, { useEffect } from 'react'
 import '../../styles/Post.css'
-import ThumbUpIcon from '@mui/icons-material/ThumbUp'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble'
 import NearMeIcon from '@mui/icons-material/NearMe'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
@@ -10,7 +9,9 @@ import { useState } from 'react'
 import Spinner from '../Spinner/Spinner'
 import { useSelector } from 'react-redux'
 import { isEmpty } from '@firebase/util'
-const Post = ({ post, image, username, timestamp, message }) => {
+import LikeButton from './LikeButton'
+import { dateParser } from '../../utils/date'
+const Post = ({ post }) => {
   // spinner
   const [isLoading, setIsLoading] = useState(true)
 
@@ -37,7 +38,8 @@ const Post = ({ post, image, username, timestamp, message }) => {
                 !isEmpty(usersData[0]) &&
                 usersData
                   .map((user) => {
-                    if (user._id === post) return user.picture
+                    if (user._id === post.posterId) return user.picture
+                    else return null
                   })
                   .join('')
               }
@@ -48,31 +50,46 @@ const Post = ({ post, image, username, timestamp, message }) => {
                 {!isEmpty(usersData[0]) &&
                   usersData
                     .map((user) => {
-                      if (user._id === post) return user.pseudo
+                      if (user._id === post.posterId) return user.pseudo
+                      else return null
                     })
                     .join('')}
               </h3>
-              <p>{timestamp}</p>
+              <p>{dateParser(post.createdAt)}</p>
             </div>
           </div>
 
           <div className="post__bottom">
-            <p>{message}</p>
+            <p>{post.message}</p>
           </div>
 
           <div className="post__image">
-            <img src={image} alt="" />
+            {post.picture && <img src={post.picture} alt="pic" />}
+          </div>
+
+          <div className="post__video">
+            {post.video && (
+              <iframe
+                width="560"
+                height="315"
+                src={post.video}
+                title="youtube video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            )}
           </div>
 
           <div className="post__options">
-            <div className="post__option">
-              <ThumbUpIcon />
-              <p>Feel</p>
-            </div>
+            <LikeButton post={post} />
 
             <div className="post__option">
               <ChatBubbleIcon />
-              <p>Comment</p>
+              <p>
+                {' '}
+                {post.comments.length === 0 ? 'Comment' : post.comments.length}
+              </p>
             </div>
           </div>
         </>
