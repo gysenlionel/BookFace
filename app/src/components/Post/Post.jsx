@@ -70,7 +70,7 @@ const Post = ({ post }) => {
           <div className="post__video">
             {post.video && (
               <iframe
-                width="560"
+                width="auto"
                 height="315"
                 src={post.video}
                 title="youtube video"

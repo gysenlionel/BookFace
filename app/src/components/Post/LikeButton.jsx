@@ -6,6 +6,7 @@ import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css'
 import { useDispatch } from 'react-redux'
 import { likePost, unlikePost } from '../../actions/post.actions'
+
 const LikeButton = ({ post }) => {
   // like sur false de base
   const [liked, setLiked] = useState(false)
@@ -38,7 +39,12 @@ const LikeButton = ({ post }) => {
     <>
       {uid === null && (
         <Popup
-          trigger={<ThumbUpIcon />}
+          trigger={
+            <div className="post__option">
+              <ThumbUpIcon />
+              <p>Feel</p>
+            </div>
+          }
           position={['bottom center', 'bottom right', 'bottom left']}
           closeOnDocumentClick
         >
