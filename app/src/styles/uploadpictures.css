@@ -1,0 +1,35 @@
+.button1 {
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  font-size: 1em;
+
+  background: -webkit-linear-gradient(
+    89deg,
+    rgb(41, 196, 201),
+    rgb(121, 244, 218)
+  );
+
+  color: #eff2f5;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+}
+.button2 {
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  font-size: 1em;
+  margin-left: 150px;
+
+  background: -webkit-linear-gradient(
+    89deg,
+    rgb(41, 196, 201),
+    rgb(121, 244, 218)
+  );
+
+  color: #ffffff;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+}

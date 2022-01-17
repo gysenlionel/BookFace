@@ -70,10 +70,13 @@ const Formulaire = () => {
                   // direction pour submit le form!
                   onSubmit={async (values) => {
                     const pseudo = values.pseudo
-                    const firstname = values.lastName
+                    const firstname = values.firstName
                     const name = values.lastName
                     const email = values.email
                     const password = values.password
+                    const address = values.addressLine1
+                    const city = values.city
+                    const country = values.country
                     // fetch via axios
                     await axios({
                       method: 'post',
@@ -84,6 +87,9 @@ const Formulaire = () => {
                         name,
                         email,
                         password,
+                        address,
+                        city,
+                        country,
                       },
                     })
                       .then((res) => {
@@ -96,7 +102,7 @@ const Formulaire = () => {
                           // rediriger si submit
                           console.log('submit')
 
-                          window.location = '/login'
+                          window.location = '/'
                           setFormSubmit(true)
                         }
                       })
