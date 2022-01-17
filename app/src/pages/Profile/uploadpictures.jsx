@@ -41,6 +41,7 @@ function Uploadpictures() {
           className="button1"
           variant="contained"
           component="label"
+          sx={{ mt: 3, mb: 2, ml: 5, mr: 5 }}
         >
           Upload File
           <input
