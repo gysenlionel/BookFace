@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { uploadPicture } from '../../actions/user.actions'
-import { Button } from '@mui/material'
+import { Button, Grid } from '@mui/material'
 import './../../styles/uploadpictures.css'
+import { Box } from '@material-ui/core'
 
 function Uploadpictures() {
   /*  const [uploadfile, setuploadfile] = useState(true)
@@ -35,30 +36,38 @@ function Uploadpictures() {
   return (
     <div>
       <form action="" onSubmit={handlePicture}>
-        {/*  {uploadfile && ( */}
-        <Button
-          id="upload"
-          className="button1"
-          variant="contained"
-          component="label"
-          sx={{ mt: 3, mb: 2, ml: 5, mr: 5 }}
+        <Grid
+          xs={12}
+          container
+          direction="row"
+          justifyContent="space-around"
+          alignItems="center"
         >
-          Upload File
-          <input
-            type="file"
-            hidden
-            name="file"
-            accept=".jpg,.jpeg,.png"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-        </Button>
-        {/*   )} */}
-        {/*   {send && ( */}
-        <Button className="button2" variant="contained" component="label">
-          SEND
-          <input hidden type="submit" value="send" />
-        </Button>
-        {/*  )} */}
+          <Grid sx={{ ml: 1, mr: 1 }}>
+            <Button
+              id="upload"
+              className="button1"
+              variant="contained"
+              component="label"
+              sx={{ mt: 3, mb: 2, ml: 5, mr: 5 }}
+            >
+              Upload File
+              <input
+                type="file"
+                hidden
+                name="file"
+                accept=".jpg,.jpeg,.png"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+            </Button>
+          </Grid>
+          <Grid>
+            <Button className="button2" variant="contained" component="label">
+              SEND
+              <input hidden type="submit" value="send" />
+            </Button>
+          </Grid>
+        </Grid>
       </form>
     </div>
   )

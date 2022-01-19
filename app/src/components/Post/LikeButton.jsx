@@ -55,7 +55,7 @@ const LikeButton = ({ post }) => {
       {uid && liked === false && (
         <div onClick={like} className="post__option">
           <ThumbUpIcon />
-          <p>Feel</p>
+          <p>{post.likers.length === 0 ? 'feel' : post.likers.length}</p>
         </div>
       )}
       {uid && liked === true && (

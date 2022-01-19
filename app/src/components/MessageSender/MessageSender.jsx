@@ -103,7 +103,7 @@ const MessageSender = () => {
                 multiline={true}
               />
             </Grid>
-            <Grid xs={2} sx={{ ml: 5, mr: 5, mt: 1, mb: 2 }}>
+            <Grid xs={2}>
               {isEmpty(video) && (
                 <>
                   <AddPhotoAlternateIcon />
@@ -147,27 +147,30 @@ const MessageSender = () => {
           alignItems="center"
           sx={{ mt: 5, mb: 2 }}
         >
-          <Grid xs={12}>
+          <Grid
+            xs={12}
+            direction="row"
+            justifyContent="space-around"
+            alignItems="center"
+          >
             <div className="messageSender__bottom">
               {message || postPicture || video.length > 20 ? (
-                <Box xs={4} sx={{ ml: 5, mr: 5, mt: 1, mb: 2 }}>
-                  <button
-                    className="messageSender__button -cancel"
-                    onClick={cancelPost}
-                  >
-                    Cancel
-                  </button>
-                </Box>
-              ) : null}
-              <Box xs={2} sx={{ justifyContent: 'flex-end' }}>
                 <button
-                  type="submit"
-                  onClick={handlePost}
-                  className="messageSender__button"
+                  className="messageSender__button -cancel"
+                  onClick={cancelPost}
                 >
-                  Send
+                  Cancel
                 </button>
-              </Box>
+              ) : null}
+
+              <button
+                type="submit"
+                onClick={handlePost}
+                className="messageSender__button"
+              >
+                Send
+              </button>
+
               {!isEmpty(error.format) && <p>{error.format}</p>}
               {!isEmpty(error.maxSize) && <p>{error.maxSize}</p>}
             </div>
